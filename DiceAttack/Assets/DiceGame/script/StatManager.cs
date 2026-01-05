@@ -1,28 +1,39 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class StatManager : MonoBehaviour
 {
-    // 싱글톤 인스턴스
-    public static StatManager Instance { get; private set; }
-
-    private void Awake()
-    {
-        // 이미 인스턴스가 존재하면 자기 자신 제거
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        // 인스턴스로 등록
-        Instance = this;
-
-        // 씬 전환에도 파괴되지 않게 함
-        DontDestroyOnLoad(gameObject);
-    }
-
     public int hp;
     public int attack;
+    public bool isDead;
     
+    private IObjectPool<StatManager> statPool;
+    public void Attacked(int attack)
+    {
+        hp -= attack;
+        if (hp <= 0)
+        {
+            isDead = true;
+            Die();
+        }
+    }
+
+    public void SetStatPool(IObjectPool<StatManager> pool)
+    {
+        statPool = pool;
+    }
+    
+    void Die()
+    {
+        statPool.Release(this);
+        Debug.Log($"나주금{this}");
+    }
+    private void OnEnable()
+    {
+        isDead = false;
+        hp = 100; // 또는 maxHp
+    }
 
 }

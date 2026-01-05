@@ -1,56 +1,52 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Pool;
 public class PoolManager : MonoBehaviour
 {
     public static PoolManager Instance { get; private set; }
 
-    [Header("풀로 관리할 오브젝트")]
-    public GameObject objectPrefab; // 풀로 사용할 프리팹
-    public int poolSize = 100;        // 최대 풀 개수
-
-    private List<GameObject> pool = new List<GameObject>();
-
+    public GameObject enemy;
+    
+    private IObjectPool<StatManager> statPool;
     private void Awake()
     {
-        // 싱글톤 등록
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
+        statPool = new ObjectPool<StatManager>(createEnemy, OnGetEnemy, OnReleasEnemy, OnDestroyEnemy, maxSize: 20);
+        StartCoroutine(GetEnemy());
+    }
 
-        // 풀 초기화
-        for (int i = 0; i < poolSize; i++)
+    IEnumerator GetEnemy()
+    {
+        while (true)
         {
-            GameObject obj = Instantiate(objectPrefab);
-            obj.SetActive(false); // 처음엔 비활성화
-            pool.Add(obj);
+            var enemy = statPool.Get();
+            yield return new WaitForSeconds(1f);
         }
     }
 
-    // 사용 가능한 오브젝트 가져오기
-    public GameObject GetObject()
+    private StatManager createEnemy()
     {
-        foreach (var obj in pool)
-        {
-            if (!obj.activeInHierarchy)
-            {
-                obj.SetActive(true);
-                return obj;
-            }
-        }
-
-        // 모두 사용 중이면 새로 생성 (선택사항)
-        GameObject newObj = Instantiate(objectPrefab);
-        pool.Add(newObj);
-        return newObj;
+        StatManager _enemy = Instantiate(enemy).GetComponent<StatManager>();
+        _enemy.SetStatPool(statPool);
+        return _enemy;
     }
 
-    // 오브젝트 되돌리기
-    public void ReturnObject(GameObject obj)
+    private void OnGetEnemy(StatManager enemy)
     {
-        obj.SetActive(false);
+        enemy.gameObject.SetActive(true);
+    }
+    private void OnReleasEnemy(StatManager enemy)
+    {
+        enemy.gameObject.SetActive(false);
+    }
+    private void OnDestroyEnemy(StatManager enemy)
+    {
+        Destroy(enemy.gameObject);
     }
 }

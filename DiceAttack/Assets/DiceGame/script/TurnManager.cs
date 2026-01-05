@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
@@ -20,14 +21,15 @@ public class TurnManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
     
-    int playerTurn = 0;
-    int MonsterTurn = 0;
+    public List<MonsterLogic> monsters;
+    public PlayerLogic player;
 
-    IEnumerator PlayerTurn()
+    IEnumerator TurnRoutine()
     {
-        if (playerTurn == 0)
+        StartCoroutine(player.PlayerTurnStart());
+        foreach (MonsterLogic monster in monsters)
         {
-            playerTurn = 1;
+            StartCoroutine(monster.MonsterTurnStart());
         }
         yield return new WaitForSeconds(0.5f);
     }
