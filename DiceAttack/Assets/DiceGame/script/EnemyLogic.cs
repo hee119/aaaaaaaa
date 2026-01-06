@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyLogic : MonoBehaviour
 {
     GameObject playerObj;
-    private StatManager player;
+    private StatManager playerStats;
+    private PlayerLogic playerLogic;
     private int attack;
     private StatManager MonsterStats;
 
@@ -17,7 +18,8 @@ public class EnemyLogic : MonoBehaviour
             Debug.LogError("플레이어가 없습니다.");
             return;
         }
-        player = playerObj.GetComponent<StatManager>();
+        playerStats = playerObj.GetComponent<StatManager>();
+        playerLogic = playerObj.GetComponent<PlayerLogic>();
         MonsterStats = GetComponent<StatManager>();
         attack = MonsterStats.attack;
     }
@@ -28,10 +30,11 @@ public class EnemyLogic : MonoBehaviour
 
     public IEnumerator MonsterTurnStart()
     {
-        if(MonsterStats.isDead)
+        if (MonsterStats.isDead)
             TurnManager.Instance.monsters.Remove(gameObject);
 
-        if (!MonsterStats.isDead || !player.isDead)
+        if (!MonsterStats.isDead && playerLogic.turnend || !playerStats.isDead && playerLogic.turnend)
+        {
             for (int i = 0; i < 3; i++)
             {
                 int rand = Random.Range(0, 6);
@@ -46,9 +49,10 @@ public class EnemyLogic : MonoBehaviour
                 }
             }
 
-            player.Attacked(attack);
+            playerStats.Hit(attack);
             Debug.Log("플레이어 때찌.");
             yield return null;
             attack = MonsterStats.attack;
         }
     }
+}

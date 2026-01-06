@@ -15,7 +15,7 @@ public class StatManager : MonoBehaviour
     {
         statPool = PoolManager.Instance.statPool;
     }
-    public void Attacked(int attack)
+    public void Hit(int attack)
     {
         hp -= attack;
         if (hp <= 0)
