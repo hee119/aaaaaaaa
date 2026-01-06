@@ -350,6 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TurnManager
   monsters: []
   player: {fileID: 228424768}
+  turnend: 0
 --- !u!4 &359230500
 Transform:
   m_ObjectHideFlags: 0
