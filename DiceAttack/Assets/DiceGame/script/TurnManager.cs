@@ -7,6 +7,7 @@ public class TurnManager : MonoBehaviour
     public static TurnManager Instance { get; private set; }
     public List<GameObject> monsters = new List<GameObject>();
     public PlayerLogic player;
+    public StatManager playerStat; 
     public bool turnend;
     private void Awake()
     {
@@ -33,6 +34,8 @@ public class TurnManager : MonoBehaviour
     {
         while (monsters.Count != 0)
         {
+            if(playerStat.isDead)
+                break;
             yield return player.PlayerTurnStart();
             for (int i = 0; i < monsters.Count; i++)
             {

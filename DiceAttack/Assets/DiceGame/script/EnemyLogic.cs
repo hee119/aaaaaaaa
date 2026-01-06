@@ -8,7 +8,10 @@ public class EnemyLogic : MonoBehaviour
     private StatManager playerStats;
     private PlayerLogic playerLogic;
     private int attack;
+    private int defense;
+    private int shareStats;
     private StatManager MonsterStats;
+    enum Action { Attack, Depense }
 
     void Awake()
     {
@@ -22,6 +25,8 @@ public class EnemyLogic : MonoBehaviour
         playerLogic = playerObj.GetComponent<PlayerLogic>();
         MonsterStats = GetComponent<StatManager>();
         attack = MonsterStats.attack;
+        defense = MonsterStats.defense;
+        
     }
     void OnEnable()
     {
@@ -35,24 +40,35 @@ public class EnemyLogic : MonoBehaviour
 
         if (!MonsterStats.isDead && playerLogic.turnend || !playerStats.isDead && playerLogic.turnend)
         {
+            int action = Random.Range(0, 2);
             for (int i = 0; i < 3; i++)
             {
                 int rand = Random.Range(0, 6);
                 switch (rand)
                 {
-                    case 0: attack += 1; break;
-                    case 1: attack += 2; break;
-                    case 2: attack += 3; break;
-                    case 3: attack += 4; break;
-                    case 4: attack += 5; break;
-                    case 5: attack += 6; break;
+                    case 0: shareStats += 1; break;
+                    case 1: shareStats += 2; break;
+                    case 2: shareStats += 3; break;
+                    case 3: shareStats += 4; break;
+                    case 4: shareStats += 5; break;
+                    case 5: shareStats += 6; break;
                 }
             }
-
-            playerStats.Hit(attack);
-            Debug.Log("플레이어 때찌.");
-            yield return null;
-            attack = MonsterStats.attack;
+            
+            if ((int)Action.Attack == action)
+            {
+                playerStats.Hit(attack + shareStats);
+                Debug.Log("몬스터 공격.");
+                yield return null;
+                attack = MonsterStats.attack;
+            }
+            else if ((int)Action.Depense == action)
+            {
+                MonsterStats.Defense(defense + shareStats);
+                yield return null;
+                defense = MonsterStats.defense;
+            }
+            
         }
     }
 }

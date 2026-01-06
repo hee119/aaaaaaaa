@@ -8,6 +8,7 @@ public class StatManager : MonoBehaviour
     public int hp;
     public int attack;
     public bool isDead;
+    public int defense;
     
     private IObjectPool<StatManager> statPool;
 
@@ -17,12 +18,23 @@ public class StatManager : MonoBehaviour
     }
     public void Hit(int attack)
     {
-        hp -= attack;
+        if(defense < attack)
+        hp -= Mathf.Abs(attack - defense);
+        else
+        {
+            Debug.Log("완전방어에 성공했습니다.");
+        }
         if (hp <= 0)
         {
             isDead = true;
             Die();
         }
+    }
+
+    public void Defense(int defense)
+    {
+        this.defense = defense;
+        Debug.Log("방어중입니다.");
     }
 
     public void SetStatPool(IObjectPool<StatManager> pool)
