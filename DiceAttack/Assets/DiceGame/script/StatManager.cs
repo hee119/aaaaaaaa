@@ -10,6 +10,11 @@ public class StatManager : MonoBehaviour
     public bool isDead;
     
     private IObjectPool<StatManager> statPool;
+
+    void Start()
+    {
+        statPool = PoolManager.Instance.statPool;
+    }
     public void Attacked(int attack)
     {
         hp -= attack;
@@ -27,6 +32,12 @@ public class StatManager : MonoBehaviour
     
     void Die()
     {
+        if (CompareTag("Player"))
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         statPool.Release(this);
         Debug.Log($"나주금{this}");
     }

@@ -5,6 +5,9 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour
 {
     public static TurnManager Instance { get; private set; }
+    private List<GameObject> enemyLogic = new List<GameObject>();
+    public List<GameObject> monsters = new List<GameObject>();
+    public PlayerLogic player;
     private void Awake()
     {
         // 이미 인스턴스가 존재하면 자기 자신 제거
@@ -16,21 +19,33 @@ public class TurnManager : MonoBehaviour
 
         // 인스턴스로 등록
         Instance = this;
-
         // 씬 전환에도 파괴되지 않게 함
         DontDestroyOnLoad(gameObject);
     }
-    
-    public List<MonsterLogic> monsters;
-    public PlayerLogic player;
 
+    void Start()
+    {
+        StartCoroutine (TurnRoutine());
+    }
+
+    
     IEnumerator TurnRoutine()
     {
-        StartCoroutine(player.PlayerTurnStart());
-        foreach (MonsterLogic monster in monsters)
+        for (int i = 0; i < monsters.Count; i++)
         {
-            StartCoroutine(monster.MonsterTurnStart());
+            enemyLogic.Add(monsters[i]);
+            if (enemyLogic[i] == null)
+            {
+                Debug.LogError("없다고");
+            }
         }
-        yield return new WaitForSeconds(0.5f);
+        while (monsters.Count != 0)
+        {
+            StartCoroutine(player.PlayerTurnStart());
+            for (int i = 0; i < monsters.Count; i++)
+            {
+                yield return enemyLogic[i].GetComponent<EnemyLogic>().MonsterTurnStart();
+            }
+        }
     }
 }

@@ -1,23 +1,32 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerLogic : MonoBehaviour
 {
-    StatManager monster;
+    List<GameObject> monster;
+    StatManager player;
     private int attack;
     private int firstAttack;
     private int count;
     void Awake()
     {
+        count = TurnManager.Instance.monsters.Count;
         firstAttack = GetComponent<StatManager>().attack;
         attack = firstAttack;
-        count = TurnManager.Instance.monsters.Count;
+        player = gameObject.GetComponent<StatManager>();
+        monster = TurnManager.Instance.monsters;
     }
+    
     public IEnumerator PlayerTurnStart()
     {
+        count = TurnManager.Instance.monsters.Count;
+
+        if (player.isDead)
+            StopAllCoroutines();
         for (int i = 0; i < count; i++)
         {
-            for (int j = 0; j < count; j++)
+            for (int j = 0; j < 3; j++)
             {
                 int rand = Random.Range(0, 6);
                 switch (rand)
@@ -31,10 +40,15 @@ public class PlayerLogic : MonoBehaviour
                 }
             }
 
-            monster.Attacked(attack);
-            Debug.Log("몬스터 때찌.");
-            yield return null;
+            if (!monster[i].GetComponent<StatManager>().isDead)
+            {
+                monster[i].GetComponent<StatManager>().Attacked(attack);
+                Debug.Log("몬스터 때찌.");
+            }
+
+            yield return new WaitForSeconds(1f);
             attack = firstAttack;
+            count = TurnManager.Instance.monsters.Count;
         }
     }
 }

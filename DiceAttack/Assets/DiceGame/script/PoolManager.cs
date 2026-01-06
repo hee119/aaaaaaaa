@@ -7,8 +7,9 @@ public class PoolManager : MonoBehaviour
     public static PoolManager Instance { get; private set; }
 
     public GameObject enemy;
-    
-    private IObjectPool<StatManager> statPool;
+    int enemiesCount;
+    public IObjectPool<StatManager> statPool;
+    int spawnCount;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -18,21 +19,25 @@ public class PoolManager : MonoBehaviour
         }
         Instance = this;
         statPool = new ObjectPool<StatManager>(createEnemy, OnGetEnemy, OnReleasEnemy, OnDestroyEnemy, maxSize: 20);
+        spawnCount = EnemySpawn.Spawn();
         StartCoroutine(GetEnemy());
     }
 
     IEnumerator GetEnemy()
     {
-        while (true)
+        var enemy = statPool.Get();
+        while (enemiesCount < spawnCount)
         {
-            var enemy = statPool.Get();
+            enemy = statPool.Get();
             yield return new WaitForSeconds(1f);
+            enemiesCount++;
         }
     }
 
     private StatManager createEnemy()
     {
         StatManager _enemy = Instantiate(enemy).GetComponent<StatManager>();
+        _enemy.gameObject.SetActive(false);
         _enemy.SetStatPool(statPool);
         return _enemy;
     }
