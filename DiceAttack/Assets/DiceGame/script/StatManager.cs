@@ -9,6 +9,7 @@ public class StatManager : MonoBehaviour
     public int attack;
     public bool isDead;
     public int defense;
+    public Animator animator;
     
     private IObjectPool<StatManager> statPool;
 
@@ -16,7 +17,7 @@ public class StatManager : MonoBehaviour
     {
         statPool = PoolManager.Instance.statPool;
     }
-    public void Hit(int attack)
+    public IEnumerator Hit(int attack)
     {
         if(defense < attack)
         hp -= Mathf.Abs(attack - defense);
@@ -29,6 +30,8 @@ public class StatManager : MonoBehaviour
         if (hp <= 0 && !isDead)
         {
             isDead = true;
+            animator.SetTrigger("Die");
+            yield return new WaitForSeconds(0.5f);
             Die();
         }
     }

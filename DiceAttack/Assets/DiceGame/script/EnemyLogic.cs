@@ -59,7 +59,7 @@ public class EnemyLogic : MonoBehaviour
             
             if ((int)Action.Attack == action)
             {
-                playerStats.Hit(attack + shareStats);
+                StartCoroutine(playerStats.Hit(attack + shareStats));
                 Debug.Log("몬스터 공격.");
                 yield return null;
                 attack = MonsterStats.attack;

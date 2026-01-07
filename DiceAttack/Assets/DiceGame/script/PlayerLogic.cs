@@ -102,7 +102,7 @@ public class PlayerLogic : MonoBehaviour
                 {
                     yield return Reroll(i);
                     ATK.text = $"{attack}";
-                    targetMonsterStats.Hit(attack);
+                    StartCoroutine(targetMonsterStats.Hit(attack));
                     Debug.Log("공격");
                 }
                 else if(dice[i].CompareTag("DefenceDice"))

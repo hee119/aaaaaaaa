@@ -520,6 +520,7 @@ MonoBehaviour:
   attack: 1
   isDead: 0
   defense: 0
+  animator: {fileID: 228424769}
 --- !u!114 &228424768
 MonoBehaviour:
   m_ObjectHideFlags: 0
