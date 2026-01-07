@@ -31,7 +31,7 @@ public class StatManager : MonoBehaviour
         {
             isDead = true;
             animator.SetTrigger("Die");
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(5f);
             Die();
         }
     }

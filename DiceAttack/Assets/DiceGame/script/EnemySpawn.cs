@@ -1,12 +1,24 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public static int SpawnCount = Random.Range(0, 3);
+    public static int spawnCount;
+    public GameObject spawner;
 
-    public static int Spawn()
+    public static int SpawnCount()
     {
-        SpawnCount = Random.Range(0, 3);
-        return SpawnCount;
+        spawnCount = Random.Range(1, 3);
+        return spawnCount;
+    }
+
+    public void Spawn()
+    {
+            for (int i = 0; i < spawnCount; i++)
+            {
+                TurnManager.Instance.monsters[i].transform.position = spawner.transform.GetChild(i).position;
+            }
     }
 }

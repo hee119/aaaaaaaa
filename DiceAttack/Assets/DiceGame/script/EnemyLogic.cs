@@ -27,17 +27,15 @@ public class EnemyLogic : MonoBehaviour
         
     }
     void OnEnable()
-    {
-        TurnManager.Instance.monsters.Add(gameObject);
-        transform.position = new Vector3(
-            Random.Range(-1f, 7f), 
-            transform.position.y, 
-            0f
-        );
+    {if (!TurnManager.Instance.monsters.Contains(gameObject))
+        {
+            TurnManager.Instance.monsters.Add(gameObject);
+        }
     }
 
     public IEnumerator MonsterTurnStart()
     {
+        Debug.Log(1);
         if (MonsterStats.isDead)
         {
             TurnManager.Instance.monsters.Remove(gameObject);

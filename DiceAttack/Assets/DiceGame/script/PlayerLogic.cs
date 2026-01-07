@@ -16,7 +16,7 @@ public class PlayerLogic : MonoBehaviour
     private int defence;
     private int firstAttack;
     private int count;
-    private bool isReroll;
+    public int rerollCount;
     public TMP_Text ATK;
     public TMP_Text DFS;
     public Sprite[] DiceSprites;
@@ -75,8 +75,8 @@ public class PlayerLogic : MonoBehaviour
         if (player.isDead || TurnManager.Instance.playerTurnend)
             yield break;
         
-            isReroll = false;
-            yield return new WaitUntil(() => isReroll);
+            rerollCount = count;
+            yield return new WaitUntil(() => rerollCount <= 0);
 
             yield return new WaitForSeconds(1f);
             count = TurnManager.Instance.monsters.Count;
@@ -121,6 +121,7 @@ public class PlayerLogic : MonoBehaviour
 
     public IEnumerator Reroll(int diceCount)
     {
+            rerollCount--;
             int rand = Random.Range(1, 7);
             if (dice[diceCount].CompareTag("AttackDice"))
             {

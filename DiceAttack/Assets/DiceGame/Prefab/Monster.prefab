@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 354844116731343301}
   m_Layer: 0
   m_Name: Monster
-  m_TagString: Monster
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -279,7 +279,7 @@ MonoBehaviour:
   attack: 1
   isDead: 0
   defense: 0
-  animator: {fileID: 0}
+  animator: {fileID: 9222679337546715377}
 --- !u!61 &8566332543787302591
 BoxCollider2D:
   m_ObjectHideFlags: 0

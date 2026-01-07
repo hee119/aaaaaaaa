@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 public class PoolManager : MonoBehaviour
 {
     public static PoolManager Instance { get; private set; }
-
+    public EnemySpawn enemySpawn;
     public GameObject enemy;
     int enemiesCount;
     public IObjectPool<StatManager> statPool;
@@ -19,19 +19,21 @@ public class PoolManager : MonoBehaviour
         }
         Instance = this;
         statPool = new ObjectPool<StatManager>(createEnemy, OnGetEnemy, OnReleasEnemy, OnDestroyEnemy, maxSize: 20);
-        spawnCount = EnemySpawn.Spawn();
+        spawnCount = EnemySpawn.SpawnCount();
         StartCoroutine(GetEnemy());
     }
 
     IEnumerator GetEnemy()
     {
-        var enemy = statPool.Get();
+        StatManager enemy;
         while (enemiesCount < spawnCount)
         {
             enemy = statPool.Get();
             yield return new WaitForSeconds(1f);
             enemiesCount++;
         }
+
+        enemySpawn.Spawn();
     }
 
     private StatManager createEnemy()
