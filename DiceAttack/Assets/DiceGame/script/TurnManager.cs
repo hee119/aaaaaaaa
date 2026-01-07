@@ -8,7 +8,7 @@ public class TurnManager : MonoBehaviour
     public List<GameObject> monsters = new List<GameObject>();
     public PlayerLogic player;
     public StatManager playerStat; 
-    public bool turnend;
+    public bool playerTurnend;
     private void Awake()
     {
         // 이미 인스턴스가 존재하면 자기 자신 제거
@@ -36,12 +36,18 @@ public class TurnManager : MonoBehaviour
         {
             if(playerStat.isDead)
                 break;
-            yield return player.PlayerTurnStart();
+            for (int i = 0; i < monsters.Count; i++)
+            {
+                yield return player.PlayerTurnStart();
+            }
+            playerTurnend = true;
+            yield return new WaitForSeconds(4f);
             for (int i = 0; i < monsters.Count; i++)
             {
                 yield return monsters[i].GetComponent<EnemyLogic>().MonsterTurnStart();
                 yield return new WaitForSeconds(1f);
             }
+            playerTurnend = false;
         }
     }
 }

@@ -24,7 +24,9 @@ public class StatManager : MonoBehaviour
         {
             Debug.Log("완전방어에 성공했습니다.");
         }
-        if (hp <= 0)
+
+        defense = 0;
+        if (hp <= 0 && !isDead)
         {
             isDead = true;
             Die();
@@ -44,12 +46,6 @@ public class StatManager : MonoBehaviour
     
     void Die()
     {
-        if (CompareTag("Player"))
-        {
-            gameObject.SetActive(false);
-            return;
-        }
-
         statPool.Release(this);
         Debug.Log($"나주금{this}");
     }

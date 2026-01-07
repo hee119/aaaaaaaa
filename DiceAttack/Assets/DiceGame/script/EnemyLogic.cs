@@ -6,7 +6,6 @@ public class EnemyLogic : MonoBehaviour
 {
     GameObject playerObj;
     private StatManager playerStats;
-    private PlayerLogic playerLogic;
     private int attack;
     private int defense;
     private int shareStats;
@@ -22,7 +21,6 @@ public class EnemyLogic : MonoBehaviour
             return;
         }
         playerStats = playerObj.GetComponent<StatManager>();
-        playerLogic = playerObj.GetComponent<PlayerLogic>();
         MonsterStats = GetComponent<StatManager>();
         attack = MonsterStats.attack;
         defense = MonsterStats.defense;
@@ -36,10 +34,14 @@ public class EnemyLogic : MonoBehaviour
     public IEnumerator MonsterTurnStart()
     {
         if (MonsterStats.isDead)
-            TurnManager.Instance.monsters.Remove(gameObject);
-
-        if (!MonsterStats.isDead && playerLogic.turnend || !playerStats.isDead && playerLogic.turnend)
         {
+            TurnManager.Instance.monsters.Remove(gameObject);
+            yield break;
+        }
+
+        if (!MonsterStats.isDead && TurnManager.Instance.playerTurnend)
+        {
+            shareStats = 0;
             int action = Random.Range(0, 2);
             for (int i = 0; i < 3; i++)
             {

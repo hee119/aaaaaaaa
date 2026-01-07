@@ -2,18 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
+using UnityEngine.UI;
 
 public class PlayerLogic : MonoBehaviour
 {
     GameObject targetMonster;
+    public GameObject[] dice = new GameObject[3];
     StatManager player;
     StatManager targetMonsterStats;
     private int attack;
+    private int firstDefence;
+    private int defence;
     private int firstAttack;
     private int count;
-    public bool turnend;
+    private bool isReroll;
+    public TMP_Text ATK;
+    public TMP_Text DFS;
+    public Sprite[] DiceSprites;
+    public Image diceImage;
+    public GameObject DiceObj;
     void Awake()
     {
+        diceImage.enabled = false;
         player = gameObject.GetComponent<StatManager>();
     }
 
@@ -21,6 +32,8 @@ public class PlayerLogic : MonoBehaviour
     {
         firstAttack = GetComponent<StatManager>().attack;
         attack = firstAttack;
+        firstDefence = GetComponent<StatManager>().defense;
+        defence = firstDefence;
     }
     void Update()
     {
@@ -28,11 +41,7 @@ public class PlayerLogic : MonoBehaviour
             if (Input.GetMouseButtonDown(0)) // 마우스 왼쪽 클릭
             {
                 // UI 클릭 체크
-                if (EventSystem.current.IsPointerOverGameObject())
-                {
-                    Debug.Log("UI(버튼 등)를 클릭해서 몬스터 클릭이 씹혔습니다.");
-                    return;
-                }
+                
 
                 // 마우스 위치 → 월드 좌표
                 Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -59,15 +68,60 @@ public class PlayerLogic : MonoBehaviour
     public IEnumerator PlayerTurnStart()
     {
         count = TurnManager.Instance.monsters.Count;
-        TurnManager.Instance.turnend = true;
-        turnend = false;
-        if (player.isDead)
-            StopAllCoroutines();
-        for (int i = 0; i < count; i++)
+        if (player.isDead || TurnManager.Instance.playerTurnend)
+            yield break;
+        
+            isReroll = false;
+            yield return new WaitUntil(() => isReroll);
+
+            yield return new WaitForSeconds(1f);
+            attack = firstAttack;
+            count = TurnManager.Instance.monsters.Count;
+    }
+
+    public void Attack()
+    {
+        if(!player.isDead && !TurnManager.Instance.playerTurnend)
+        StartCoroutine(AttackCor());
+    }
+
+    IEnumerator AttackCor()
+    {
+        attack = firstAttack;
+        defence = firstDefence;
+        if (targetMonsterStats == null)
         {
-            for (int j = 0; j < 3; j++)
+            Debug.Log("공격대상을 선택하세요");
+            yield break;
+        }
+        if (!targetMonsterStats.isDead)
+        {
+            for (int i = 0; i < dice.Length; i++)
             {
-                int rand = Random.Range(0, 6);
+                if (dice[i].CompareTag("AttackDice"))
+                {
+                    yield return Reroll(i);
+                    ATK.text = $"{attack}";
+                    targetMonsterStats.Hit(attack);
+                    Debug.Log("공격");
+                }
+                else if(dice[i].CompareTag("DefenceDice"))
+                {
+                    yield return Reroll(i);
+                    DFS.text = $"{defence}";
+                    targetMonsterStats.Defense(defence);
+                    Debug.Log("방어");
+                }
+            }
+        }
+    }
+
+    public IEnumerator Reroll(int diceCount)
+    {
+        isReroll = true;
+            int rand = Random.Range(0, 6);
+            if (dice[diceCount].CompareTag("AttackDice"))
+            {
                 switch (rand)
                 {
                     case 0: attack += 1; break;
@@ -78,33 +132,24 @@ public class PlayerLogic : MonoBehaviour
                     case 5: attack += 6; break;
                 }
             }
-            yield return new WaitUntil(() => targetMonsterStats != null);
-
-            yield return new WaitForSeconds(1f);
-            attack = firstAttack;
-            count = TurnManager.Instance.monsters.Count;
-        }
-    }
-
-    public void Attack()
-    {
-        StartCoroutine(AttackCor());
-    }
-
-    IEnumerator AttackCor()
-    {
-        if (!targetMonsterStats.isDead && !player.isDead && TurnManager.Instance.turnend)
-        {
-            if (targetMonsterStats == null)
+            else if (dice[diceCount].CompareTag("DefenceDice"))
             {
-                Debug.LogError("공격대상을 선택하세요");
-                yield return new WaitUntil(() => targetMonsterStats != null);
+                switch (rand)
+                {
+                    case 0: defence += 1; break;
+                    case 1: defence += 2; break;
+                    case 2: defence += 3; break;
+                    case 3: defence += 4; break;
+                    case 4: defence += 5; break;
+                    case 5: defence += 6; break;
+                }
             }
-
-            targetMonsterStats.Hit(attack);
-            Debug.Log("공격");
-            turnend = true;
-            TurnManager.Instance.turnend = false;
+            DiceObj.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            DiceObj.SetActive(false);
+            diceImage.sprite = DiceSprites[rand];
+            diceImage.enabled = true;
+            yield return new WaitForSeconds(0.5f);
+            diceImage.enabled = false;
         }
     }
-}
