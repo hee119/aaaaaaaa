@@ -55,11 +55,15 @@ public class PlayerLogic : MonoBehaviour
                 if (hit.collider != null)
                 {
                     Debug.Log("맞춘 물체: " + hit.collider.name);
-
+                    if (targetMonster != null)
+                    {
+                        targetMonster.transform.GetChild(0).gameObject.SetActive(false);
+                    }
                     if (hit.collider.CompareTag("Monster"))
                     {
                         targetMonster = hit.collider.gameObject;
                         targetMonsterStats = targetMonster.GetComponent<StatManager>();
+                        targetMonster.transform.GetChild(0).gameObject.SetActive(true);
                         Debug.Log("선택된 몬스터: " + targetMonster.name);
                     }
                 }
