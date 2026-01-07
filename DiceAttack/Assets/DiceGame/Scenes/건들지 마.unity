@@ -540,7 +540,6 @@ MonoBehaviour:
   ATK: {fileID: 114819642}
   DFS: {fileID: 2131193590}
   DiceSprites:
-  - {fileID: 5422754894264627374, guid: f17c87472484e4860949b06ac5683546, type: 3}
   - {fileID: -6790709423328372567, guid: 81b3824cfca524b44a90c27d7305896a, type: 3}
   - {fileID: -409290718411700136, guid: 9e32f6ec17e984988b971163958ba327, type: 3}
   - {fileID: 6988927760943946601, guid: 29b1aa28b63d54e5cb9c57fe3f5673d0, type: 3}

@@ -31,9 +31,9 @@ public class PlayerLogic : MonoBehaviour
     void Start()
     {
         firstAttack = GetComponent<StatManager>().attack;
-        attack = firstAttack;
+        attack = 0;
         firstDefence = GetComponent<StatManager>().defense;
-        defence = firstDefence;
+        defence = 0;
     }
     void Update()
     {
@@ -75,7 +75,6 @@ public class PlayerLogic : MonoBehaviour
             yield return new WaitUntil(() => isReroll);
 
             yield return new WaitForSeconds(1f);
-            attack = firstAttack;
             count = TurnManager.Instance.monsters.Count;
     }
 
@@ -102,14 +101,14 @@ public class PlayerLogic : MonoBehaviour
                 {
                     yield return Reroll(i);
                     ATK.text = $"{attack}";
-                    StartCoroutine(targetMonsterStats.Hit(attack));
+                    yield return targetMonsterStats.Hit(attack);
                     Debug.Log("공격");
                 }
                 else if(dice[i].CompareTag("DefenceDice"))
                 {
                     yield return Reroll(i);
                     DFS.text = $"{defence}";
-                    targetMonsterStats.Defense(defence);
+                    yield return targetMonsterStats.Hit(attack);
                     Debug.Log("방어");
                 }
             }
@@ -118,30 +117,29 @@ public class PlayerLogic : MonoBehaviour
 
     public IEnumerator Reroll(int diceCount)
     {
-        isReroll = true;
-            int rand = Random.Range(0, 6);
+            int rand = Random.Range(1, 7);
             if (dice[diceCount].CompareTag("AttackDice"))
             {
                 switch (rand)
                 {
-                    case 0: attack += 1; break;
-                    case 1: attack += 2; break;
-                    case 2: attack += 3; break;
-                    case 3: attack += 4; break;
-                    case 4: attack += 5; break;
-                    case 5: attack += 6; break;
+                    case 1: attack += 1 + firstAttack; break;
+                    case 2: attack += 2 + firstAttack; break;
+                    case 3: attack += 3 + firstAttack; break;
+                    case 4: attack += 4 + firstAttack; break;
+                    case 5: attack += 5 + firstAttack; break;
+                    case 6: attack += 6 + firstAttack; break;
                 }
             }
             else if (dice[diceCount].CompareTag("DefenceDice"))
             {
                 switch (rand)
                 {
-                    case 0: defence += 1; break;
-                    case 1: defence += 2; break;
-                    case 2: defence += 3; break;
-                    case 3: defence += 4; break;
-                    case 4: defence += 5; break;
-                    case 5: defence += 6; break;
+                    case 1: defence += 1 + firstDefence; break;
+                    case 2: defence += 2 + firstDefence; break;
+                    case 3: defence += 3 + firstDefence; break;
+                    case 4: defence += 4 + firstDefence; break;
+                    case 5: defence += 5 + firstDefence; break;
+                    case 6: defence += 6 + firstDefence; break;
                 }
             }
             DiceObj.SetActive(true);
