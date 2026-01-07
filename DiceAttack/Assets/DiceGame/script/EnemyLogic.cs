@@ -29,6 +29,11 @@ public class EnemyLogic : MonoBehaviour
     void OnEnable()
     {
         TurnManager.Instance.monsters.Add(gameObject);
+        transform.position = new Vector3(
+            Random.Range(-1f, 7f), 
+            transform.position.y, 
+            0f
+        );
     }
 
     public IEnumerator MonsterTurnStart()
