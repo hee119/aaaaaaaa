@@ -623,7 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1142,6 +1142,10 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2493832620260150627, guid: 2cd5f7efde8a5a548b513718d2ca0da4, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4177991357479963456, guid: 2cd5f7efde8a5a548b513718d2ca0da4, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1220,6 +1224,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4177991357479963456, guid: 2cd5f7efde8a5a548b513718d2ca0da4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4393825221139067033, guid: 2cd5f7efde8a5a548b513718d2ca0da4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5946255102381441227, guid: 2cd5f7efde8a5a548b513718d2ca0da4, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6751559117216322270, guid: 2cd5f7efde8a5a548b513718d2ca0da4, type: 3}
