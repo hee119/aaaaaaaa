@@ -22,10 +22,16 @@ public class PlayerLogic : MonoBehaviour
     public Sprite[] DiceSprites;
     public Image diceImage;
     public GameObject DiceObj;
+    public bool isReroll;
+    private Image[] DiceImages = new Image[3];
+    private int rand;
     void Awake()
     {
         diceImage.enabled = false;
         player = gameObject.GetComponent<StatManager>();
+        DiceImages[0] = dice[0].GetComponent<Image>();
+        DiceImages[1] = dice[1].GetComponent<Image>();
+        DiceImages[2] = dice[2].GetComponent<Image>();
     }
 
     void Start()
@@ -84,7 +90,7 @@ public class PlayerLogic : MonoBehaviour
 
     public void Attack()
     {
-        if(!player.isDead && !TurnManager.Instance.playerTurnend)
+        if(!player.isDead && !TurnManager.Instance.playerTurnend && !isReroll)
         StartCoroutine(AttackCor());
     }
 
@@ -104,25 +110,40 @@ public class PlayerLogic : MonoBehaviour
                 if (dice[i].CompareTag("AttackDice"))
                 {
                     yield return Reroll(i);
+                    DiceImages[i].sprite = DiceSprites[rand];
                     ATK.text = $"{attack}";
-                    yield return targetMonsterStats.Hit(attack);
-                    Debug.Log("공격");
                 }
                 else if(dice[i].CompareTag("DefenceDice"))
                 {
                     yield return Reroll(i);
+                    DiceImages[i].sprite = DiceSprites[rand];
                     DFS.text = $"{defence}";
-                    yield return targetMonsterStats.Hit(attack);
-                    Debug.Log("방어");
                 }
+            }
+
+            if (attack > firstAttack)
+            {
+                yield return targetMonsterStats.Hit(attack);
+                Debug.Log("공격");
+            }
+
+            if (defence > firstDefence)
+            {
+                targetMonsterStats.Defense(defence);
+                Debug.Log("방어");
             }
         }
     }
 
     public IEnumerator Reroll(int diceCount)
     {
+        if (targetMonsterStats.isDead)
+        {
+            yield break;
+        }
+            isReroll = true;
             rerollCount--;
-            int rand = Random.Range(1, 7);
+            rand = Random.Range(1, 7);
             if (dice[diceCount].CompareTag("AttackDice"))
             {
                 switch (rand)
@@ -154,5 +175,7 @@ public class PlayerLogic : MonoBehaviour
             diceImage.enabled = true;
             yield return new WaitForSeconds(0.5f);
             diceImage.enabled = false;
+            if (rerollCount <= 1)
+            isReroll = false;
         }
     }

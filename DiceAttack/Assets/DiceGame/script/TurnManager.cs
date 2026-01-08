@@ -46,7 +46,7 @@ public class TurnManager : MonoBehaviour
                 yield return player.PlayerTurnStart();
             }
             playerTurnend = true;
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(6f);
             for (int i = 0; i < monsters.Count; i++)
             {
                 Debug.Log(monsters.Count);

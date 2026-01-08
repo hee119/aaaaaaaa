@@ -5,22 +5,34 @@ using UnityEngine.Pool;
 
 public class StatManager : MonoBehaviour
 {
+    public int maxHp;
     public int hp;
     public int attack;
     public bool isDead;
     public int defense;
     public Animator animator;
+    private GameObject blood;
     
     private IObjectPool<StatManager> statPool;
-
+    HpsliSlider hpSlider;
+    
     void Start()
     {
         statPool = PoolManager.Instance.statPool;
+        hpSlider = GetComponentInChildren<HpsliSlider>();
+        hp = maxHp;
+        blood = transform.Find("Blood").gameObject;
     }
     public IEnumerator Hit(int attack)
     {
-        if(defense < attack)
-        hp -= Mathf.Abs(attack - defense);
+        if (defense < attack)
+        {
+            blood.SetActive(true);
+            hp -= Mathf.Abs(attack - defense);
+            hpSlider.HpBar(hp, maxHp);
+            yield return new WaitForSeconds(0.7f);
+            blood.SetActive(false);
+        }
         else
         {
             Debug.Log("완전방어에 성공했습니다.");
@@ -30,7 +42,12 @@ public class StatManager : MonoBehaviour
         if (hp <= 0 && !isDead)
         {
             isDead = true;
+            if (gameObject.transform.GetChild(0).gameObject.activeSelf)
+            {
+                gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            }
             animator.SetTrigger("Die");
+            hpSlider.gameObject.SetActive(false);
             yield return new WaitForSeconds(5f);
             Die();
         }

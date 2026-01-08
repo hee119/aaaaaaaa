@@ -26,4 +26,5 @@ public class Dice : MonoBehaviour
             _renderer.color = Color.red;
         }
     }
+    
 }
