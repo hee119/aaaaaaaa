@@ -5,15 +5,15 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public static int spawnCount;
+    public int spawnCount;
     public GameObject spawner;
 
-    public static int SpawnCount()
+    public int SpawnCount()
     {
-        spawnCount = Random.Range(1, 3);
+        spawnCount = Random.Range(1, 4);
         return spawnCount;
     }
-
+    
     public void Spawn()
     {
             for (int i = 0; i < spawnCount; i++)

@@ -25,6 +25,7 @@ public class PlayerLogic : MonoBehaviour
     public bool isReroll;
     private Image[] DiceImages = new Image[3];
     private int rand;
+    public EnemySpawn spawnCount;
     void Awake()
     {
         diceImage.enabled = false;
@@ -77,7 +78,17 @@ public class PlayerLogic : MonoBehaviour
     }
     public IEnumerator PlayerTurnStart()
     {
-        count = TurnManager.Instance.monsters.Count;
+        count = spawnCount.spawnCount;
+        for (int i = 0; i < spawnCount.spawnCount; i++)
+        {
+            if(TurnManager.Instance.monsters.Count < spawnCount.spawnCount)
+                break;
+            if (!TurnManager.Instance.monsters[i].activeSelf)
+            {
+                count--;
+            }
+        }
+        
         if (player.isDead || TurnManager.Instance.playerTurnend)
             yield break;
         
@@ -85,7 +96,6 @@ public class PlayerLogic : MonoBehaviour
             yield return new WaitUntil(() => rerollCount <= 0);
 
             yield return new WaitForSeconds(1f);
-            count = TurnManager.Instance.monsters.Count;
     }
 
     public void Attack()
@@ -96,6 +106,12 @@ public class PlayerLogic : MonoBehaviour
 
     IEnumerator AttackCor()
     {
+        if (rerollCount < 1)
+        {
+            TurnManager.Instance.playerTurnend = true;
+        }
+        if(player.isDead || TurnManager.Instance.playerTurnend || isReroll)
+        yield break;
         attack = firstAttack;
         defence = firstDefence;
         if (targetMonsterStats == null)
@@ -120,7 +136,8 @@ public class PlayerLogic : MonoBehaviour
                     DFS.text = $"{defence}";
                 }
             }
-
+            rerollCount--;
+            isReroll = false;
             if (attack > firstAttack)
             {
                 yield return targetMonsterStats.Hit(attack);
@@ -141,8 +158,8 @@ public class PlayerLogic : MonoBehaviour
         {
             yield break;
         }
-            isReroll = true;
-            rerollCount--;
+
+        isReroll = true;
             rand = Random.Range(1, 7);
             if (dice[diceCount].CompareTag("AttackDice"))
             {
@@ -175,7 +192,5 @@ public class PlayerLogic : MonoBehaviour
             diceImage.enabled = true;
             yield return new WaitForSeconds(0.5f);
             diceImage.enabled = false;
-            if (rerollCount <= 1)
-            isReroll = false;
         }
     }
