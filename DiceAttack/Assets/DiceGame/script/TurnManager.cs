@@ -44,8 +44,9 @@ public class TurnManager : MonoBehaviour
                 break;
             
             Debug.Log(monsters.Count);
-                turnImage.sprite = player.GetComponent<SpriteRenderer>().sprite;
-                yield return player.PlayerTurnStart();
+            yield return new WaitForSeconds(1f);
+            turnImage.sprite = player.GetComponent<SpriteRenderer>().sprite;
+            yield return player.PlayerTurnStart();
             yield return new WaitForSeconds(3f);
             for (int i = 0; i < monsters.Count; i++)
             {

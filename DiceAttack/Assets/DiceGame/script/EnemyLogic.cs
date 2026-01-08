@@ -34,7 +34,6 @@ public class EnemyLogic : MonoBehaviour
 
     public IEnumerator MonsterTurnStart()
     {
-        Debug.Log(1);
         if (MonsterStats.isDead)
         {
             TurnManager.Instance.monsters.Remove(gameObject);
