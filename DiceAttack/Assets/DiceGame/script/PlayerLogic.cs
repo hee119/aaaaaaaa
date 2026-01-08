@@ -78,17 +78,8 @@ public class PlayerLogic : MonoBehaviour
     }
     public IEnumerator PlayerTurnStart()
     {
-        count = spawnCount.spawnCount;
-        for (int i = 0; i < spawnCount.spawnCount; i++)
-        {
-            if(TurnManager.Instance.monsters.Count < spawnCount.spawnCount)
-                break;
-            if (!TurnManager.Instance.monsters[i].activeSelf)
-            {
-                count--;
-            }
-        }
-        
+        count = TurnManager.Instance.monsters.Count;
+        Debug.Log(count);
         if (player.isDead || TurnManager.Instance.playerTurnend)
             yield break;
         
