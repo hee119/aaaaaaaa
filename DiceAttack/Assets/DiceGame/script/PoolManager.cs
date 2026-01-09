@@ -19,7 +19,7 @@ public class PoolManager : MonoBehaviour
         }
         Instance = this;
         statPool = new ObjectPool<StatManager>(createEnemy, OnGetEnemy, OnReleasEnemy, OnDestroyEnemy, maxSize: 20);
-        spawnCount = EnemySpawn.SpawnCount();
+        spawnCount = enemySpawn.SpawnCount();
         StartCoroutine(GetEnemy());
     }
 

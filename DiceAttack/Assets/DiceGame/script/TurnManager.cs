@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class TurnManager : MonoBehaviour
     public PlayerLogic player;
     public StatManager playerStat; 
     public bool playerTurnend;
+    public Image turnImage;
     private void Awake()
     {
         // 이미 인스턴스가 존재하면 자기 자신 제거
@@ -40,15 +42,18 @@ public class TurnManager : MonoBehaviour
         {
             if(playerStat.isDead)
                 break;
+            
             Debug.Log(monsters.Count);
+            yield return new WaitForSeconds(1f);
+            turnImage.sprite = player.GetComponent<SpriteRenderer>().sprite;
+            yield return player.PlayerTurnStart();
+            yield return new WaitForSeconds(3f);
             for (int i = 0; i < monsters.Count; i++)
             {
-                yield return player.PlayerTurnStart();
-            }
-            playerTurnend = true;
-            yield return new WaitForSeconds(6f);
-            for (int i = 0; i < monsters.Count; i++)
-            {
+                if(monsters[i].activeSelf == false)
+                continue;
+                
+                turnImage.sprite = monsters[i].GetComponent<SpriteRenderer>().sprite;
                 Debug.Log(monsters.Count);
                 yield return monsters[i].GetComponent<EnemyLogic>().MonsterTurnStart();
                 yield return new WaitForSeconds(1f);

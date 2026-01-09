@@ -16,21 +16,26 @@ public class StatManager : MonoBehaviour
     private IObjectPool<StatManager> statPool;
     HpsliSlider hpSlider;
     
+    AudioSource audio;
+    
     void Start()
     {
         statPool = PoolManager.Instance.statPool;
         hpSlider = GetComponentInChildren<HpsliSlider>();
         hp = maxHp;
         blood = transform.Find("Blood").gameObject;
+        audio = GetComponent<AudioSource>();
     }
     public IEnumerator Hit(int attack)
     {
         if (defense < attack)
         {
+            audio.Play();
             blood.SetActive(true);
             hp -= Mathf.Abs(attack - defense);
             hpSlider.HpBar(hp, maxHp);
             yield return new WaitForSeconds(0.7f);
+            audio.Stop();
             blood.SetActive(false);
         }
         else

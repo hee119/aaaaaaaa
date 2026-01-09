@@ -10,7 +10,6 @@ public class EnemyLogic : MonoBehaviour
     private int defense;
     private int shareStats;
     private StatManager MonsterStats;
-    enum Action { Attack, Depense }
 
     void Awake()
     {
@@ -35,7 +34,6 @@ public class EnemyLogic : MonoBehaviour
 
     public IEnumerator MonsterTurnStart()
     {
-        Debug.Log(1);
         if (MonsterStats.isDead)
         {
             TurnManager.Instance.monsters.Remove(gameObject);
@@ -45,7 +43,7 @@ public class EnemyLogic : MonoBehaviour
         if (!MonsterStats.isDead && TurnManager.Instance.playerTurnend)
         {
             shareStats = 0;
-            int action = Random.Range(0, 2);
+            int action = Random.Range(0, 10);
             for (int i = 0; i < 3; i++)
             {
                 int rand = Random.Range(0, 6);
@@ -60,14 +58,14 @@ public class EnemyLogic : MonoBehaviour
                 }
             }
             
-            if ((int)Action.Attack == action)
+            if (action >= 3)
             {
                 StartCoroutine(playerStats.Hit(attack + shareStats));
                 Debug.Log("몬스터 공격.");
                 yield return null;
                 attack = MonsterStats.attack;
             }
-            else if ((int)Action.Depense == action)
+            else
             {
                 MonsterStats.Defense(defense + shareStats);
                 yield return null;

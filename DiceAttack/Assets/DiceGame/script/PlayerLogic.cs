@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PlayerLogic : MonoBehaviour
 {
@@ -19,12 +21,14 @@ public class PlayerLogic : MonoBehaviour
     public int rerollCount;
     public TMP_Text ATK;
     public TMP_Text DFS;
+    public TMP_Text CTC;
     public Sprite[] DiceSprites;
     public Image diceImage;
     public GameObject DiceObj;
     public bool isReroll;
     private Image[] DiceImages = new Image[3];
     private int rand;
+    public EnemySpawn spawnCount;
     void Awake()
     {
         diceImage.enabled = false;
@@ -60,7 +64,6 @@ public class PlayerLogic : MonoBehaviour
 
                 if (hit.collider != null)
                 {
-                    Debug.Log("맞춘 물체: " + hit.collider.name);
                     if (targetMonster != null)
                     {
                         targetMonster.transform.GetChild(0).gameObject.SetActive(false);
@@ -70,7 +73,6 @@ public class PlayerLogic : MonoBehaviour
                         targetMonster = hit.collider.gameObject;
                         targetMonsterStats = targetMonster.GetComponent<StatManager>();
                         targetMonster.transform.GetChild(0).gameObject.SetActive(true);
-                        Debug.Log("선택된 몬스터: " + targetMonster.name);
                     }
                 }
         }
@@ -78,14 +80,16 @@ public class PlayerLogic : MonoBehaviour
     public IEnumerator PlayerTurnStart()
     {
         count = TurnManager.Instance.monsters.Count;
+        Debug.Log(count);
         if (player.isDead || TurnManager.Instance.playerTurnend)
             yield break;
         
             rerollCount = count;
             yield return new WaitUntil(() => rerollCount <= 0);
+            TurnManager.Instance.playerTurnend = true;
 
+            
             yield return new WaitForSeconds(1f);
-            count = TurnManager.Instance.monsters.Count;
     }
 
     public void Attack()
@@ -96,6 +100,12 @@ public class PlayerLogic : MonoBehaviour
 
     IEnumerator AttackCor()
     {
+        if (rerollCount < 1)
+        {
+            yield break;
+        }
+        if(player.isDead || isReroll)
+        yield break;
         attack = firstAttack;
         defence = firstDefence;
         if (targetMonsterStats == null)
@@ -120,7 +130,9 @@ public class PlayerLogic : MonoBehaviour
                     DFS.text = $"{defence}";
                 }
             }
-
+            rerollCount--;
+            isReroll = false;
+            Critical();
             if (attack > firstAttack)
             {
                 yield return targetMonsterStats.Hit(attack);
@@ -141,8 +153,8 @@ public class PlayerLogic : MonoBehaviour
         {
             yield break;
         }
-            isReroll = true;
-            rerollCount--;
+
+        isReroll = true;
             rand = Random.Range(1, 7);
             if (dice[diceCount].CompareTag("AttackDice"))
             {
@@ -175,7 +187,21 @@ public class PlayerLogic : MonoBehaviour
             diceImage.enabled = true;
             yield return new WaitForSeconds(0.5f);
             diceImage.enabled = false;
-            if (rerollCount <= 1)
-            isReroll = false;
         }
+
+    void Critical()
+    {
+        rand = Random.Range(1, 101);
+        int critical = 0;
+        double b = 0;
+        if (rand <= attack * 3)
+        {
+            b = Mathf.Abs(rand - attack) / 10;
+            b = Math.Round(b, 1);
+            critical = (int)(attack + b * attack);
+            attack = critical;
+        }
+        
+        CTC.text = critical.ToString();
+    }
     }
