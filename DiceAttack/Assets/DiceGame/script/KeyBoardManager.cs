@@ -3,6 +3,7 @@ using UnityEngine;
 public class KeyBoardManager : MonoBehaviour
 {
     PlayerLogic playerLogic;
+    private Map map;
 
     void Awake()
     {
@@ -16,7 +17,7 @@ public class KeyBoardManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            playerLogic.Attack();
+            map.OpenMap();
         }
     }
 }

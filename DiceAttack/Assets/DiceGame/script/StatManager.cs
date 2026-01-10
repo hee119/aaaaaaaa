@@ -1,4 +1,5 @@
 using System.Collections;
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -12,6 +13,7 @@ public class StatManager : MonoBehaviour
     public int defense;
     public Animator animator;
     private GameObject blood;
+    [CanBeNull] private GameObject defenseIcon;
     
     private IObjectPool<StatManager> statPool;
     HpsliSlider hpSlider;
@@ -20,6 +22,7 @@ public class StatManager : MonoBehaviour
     
     void Start()
     {
+        defenseIcon = transform.Find("defenseIcon")?.gameObject;
         statPool = PoolManager.Instance.statPool;
         hpSlider = GetComponentInChildren<HpsliSlider>();
         hp = maxHp;
@@ -36,11 +39,15 @@ public class StatManager : MonoBehaviour
             hpSlider.HpBar(hp, maxHp);
             yield return new WaitForSeconds(0.7f);
             audio.Stop();
+            if(defenseIcon != null)
+            defenseIcon.SetActive(false);
             blood.SetActive(false);
         }
         else
         {
             Debug.Log("완전방어에 성공했습니다.");
+            if (defenseIcon != null)  
+            defenseIcon.SetActive(false);
         }
 
         defense = 0;

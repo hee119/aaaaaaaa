@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyLogic : MonoBehaviour
 {
     GameObject playerObj;
+    private GameObject fightIcon;
+    GameObject defenseIcon;
     private StatManager playerStats;
     private int attack;
     private int defense;
@@ -19,6 +21,8 @@ public class EnemyLogic : MonoBehaviour
             Debug.LogError("플레이어가 없습니다.");
             return;
         }
+        fightIcon = transform.Find("fightIcon").gameObject;
+        defenseIcon = transform.Find("defenseIcon").gameObject;
         playerStats = playerObj.GetComponent<StatManager>();
         MonsterStats = GetComponent<StatManager>();
         attack = MonsterStats.attack;
@@ -60,13 +64,19 @@ public class EnemyLogic : MonoBehaviour
             
             if (action >= 3)
             {
-                StartCoroutine(playerStats.Hit(attack + shareStats));
+                fightIcon.SetActive(true);
+                attack += shareStats;
+                Debug.Log(attack);
+                StartCoroutine(playerStats.Hit(attack));
                 Debug.Log("몬스터 공격.");
                 yield return null;
                 attack = MonsterStats.attack;
+                yield return new WaitForSeconds(1.5f);
+                fightIcon.SetActive(false);
             }
             else
             {
+                defenseIcon.SetActive(true);
                 MonsterStats.Defense(defense + shareStats);
                 yield return null;
                 defense = MonsterStats.defense;
