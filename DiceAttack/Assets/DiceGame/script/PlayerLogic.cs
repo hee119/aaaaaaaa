@@ -217,6 +217,18 @@ public class PlayerLogic : MonoBehaviour
                     case 6: attack += (10 + firstAttack) * 2; break;
                 }
             }
+            else if (dice[diceCount].CompareTag("MadicDice"))
+            {
+                switch (rand)
+                {
+                    case 1: player.hp += 1 + firstAttack; break;
+                    case 2: player.hp += 2 + firstAttack; break;
+                    case 3: player.hp += 3 + firstAttack; break;
+                    case 4: player.hp += 4 + firstAttack; break;
+                    case 5: player.hp += 5 + firstAttack; break;
+                    case 6: player.hp += 6 + firstAttack; break;
+                }
+            }
             DiceObj.SetActive(true);
             yield return new WaitForSeconds(1f);
             DiceObj.SetActive(false);

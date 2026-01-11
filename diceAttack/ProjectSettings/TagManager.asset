@@ -8,6 +8,7 @@ TagManager:
   - AttackDice
   - DefenceDice
   - GambleDice
+  - MadicDice
   layers:
   - Default
   - TransparentFX

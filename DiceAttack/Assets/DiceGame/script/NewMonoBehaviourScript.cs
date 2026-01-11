@@ -5,8 +5,10 @@ using TMPro;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
+    public static NewMonoBehaviourScript Instance { get; private set; }
+
     int diceCount = 0;
-    bool win = false;
+    public bool win = false;
     public int loses = 0;
     public GameObject winImage;
     public GameObject loseImage;
@@ -21,6 +23,16 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void Awake()
     {
+            // 이미 인스턴스가 존재하면 자기 자신 제거
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            // 인스턴스로 등록
+            Instance = this;
+            // 씬 전환에도 파괴되지 않게 함
          img = GetComponent<Image>();
     }
     public void Reroll()
