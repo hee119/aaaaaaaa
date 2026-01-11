@@ -1477,6 +1477,16 @@ MonoBehaviour:
   - {fileID: 1579033753}
   - {fileID: 877041422}
   - {fileID: 172369057}
+  playerTrans:
+  - {fileID: 509448236739910900}
+  - {fileID: 1210814683}
+  - {fileID: 540265499}
+  - {fileID: 837922918}
+  - {fileID: 1385724266}
+  - {fileID: 563309369}
+  - {fileID: 1390737591}
+  player: {fileID: 0}
+  stage: 0
 --- !u!1 &704796922
 GameObject:
   m_ObjectHideFlags: 0
@@ -3171,6 +3181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   winCount: 0
+  nowScene: 0
 --- !u!4 &1716927945
 Transform:
   m_ObjectHideFlags: 0
@@ -3274,7 +3285,7 @@ GameObject:
   - component: {fileID: 1737018583}
   m_Layer: 0
   m_Name: Frog1_0
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4207,6 +4218,11 @@ PrefabInstance:
       addedObject: {fileID: 1737018582}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
+--- !u!1 &509448236739910900 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5276810048428246846, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
+  m_PrefabInstance: {fileID: 509448236739910899}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

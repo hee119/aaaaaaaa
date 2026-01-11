@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public int winCount = 0;
+    public int nowScene;
     private void Awake()
     {
         // 이미 인스턴스가 존재하면 자기 자신 제거
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour
         Instance = this;
         // 씬 전환에도 파괴되지 않게 함
         DontDestroyOnLoad(gameObject);
+        if(SceneManager.GetActiveScene().name != "Map")
+        nowScene = int.Parse(SceneManager.GetActiveScene().name);
     }
 
     private void Start()
