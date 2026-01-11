@@ -9,7 +9,7 @@ public class StageManager : MonoBehaviour
 
     void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("MapPlayer");
     }
 
     void Start()

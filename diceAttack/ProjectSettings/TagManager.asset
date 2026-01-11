@@ -9,6 +9,7 @@ TagManager:
   - DefenceDice
   - GambleDice
   - MadicDice
+  - MapPlayer
   layers:
   - Default
   - TransparentFX
