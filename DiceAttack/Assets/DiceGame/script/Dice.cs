@@ -13,7 +13,7 @@ public class Dice : MonoBehaviour
 
     public void Touch()
     {
-        if (GambleGame.Instance.win)
+        if (GambleGame.Instance != null && GambleGame.Instance.win)
         {
             if (gameObject.CompareTag("AttackDice"))
             {

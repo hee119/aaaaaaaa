@@ -79,6 +79,10 @@ public class PlayerLogic : MonoBehaviour
     }
     public IEnumerator PlayerTurnStart()
     {
+        defence = 0;
+        attack = 0;
+        UpdateUi();
+        
         if (player.isDead) yield break;
 
         TurnManager.Instance.playerTurnend = false;
@@ -115,8 +119,8 @@ public class PlayerLogic : MonoBehaviour
         }
         if(player.isDead || isReroll)
         yield break;
-        attack = firstAttack;
-        defence = firstDefence;
+        attack = 0;
+        UpdateUi();
         if (targetMonsterStats == null)
         {
             Debug.Log("공격대상을 선택하세요");
@@ -236,5 +240,11 @@ public class PlayerLogic : MonoBehaviour
         }
         
         CTC.text = critical.ToString();
+    }
+
+    void UpdateUi()
+    {
+        ATK.text = $"{attack}";
+        DFS.text = $"{defence}";
     }
     }

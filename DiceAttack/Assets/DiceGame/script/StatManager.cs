@@ -67,7 +67,7 @@ public class StatManager : MonoBehaviour
 
     public void Defense(int defense)
     {
-        this.defense = defense;
+        this.defense += defense;
         Debug.Log("방어중입니다.");
     }
 
