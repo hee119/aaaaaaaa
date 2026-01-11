@@ -11,6 +11,8 @@ public class TurnManager : MonoBehaviour
     public StatManager playerStat; 
     public bool playerTurnend;
     public Image turnImage;
+    public GameObject winObj;
+    public GameObject loseObj;
     private void Awake()
     {
         // 이미 인스턴스가 존재하면 자기 자신 제거
@@ -23,7 +25,6 @@ public class TurnManager : MonoBehaviour
         // 인스턴스로 등록
         Instance = this;
         // 씬 전환에도 파괴되지 않게 함
-        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
@@ -38,11 +39,12 @@ public class TurnManager : MonoBehaviour
     }
     IEnumerator TurnRoutine()
     {
-        while (monsters.Count != 0)
+        while (true)
         {
             if(playerStat.isDead)
                 break;
-            
+            if(monsters.Count < 1)
+                break;
             Debug.Log(monsters.Count);
             yield return new WaitForSeconds(1f);
             turnImage.sprite = player.GetComponent<SpriteRenderer>().sprite;
@@ -50,7 +52,7 @@ public class TurnManager : MonoBehaviour
             yield return new WaitForSeconds(3f);
             for (int i = 0; i < monsters.Count; i++)
             {
-                if(monsters[i].activeSelf == false)
+                if(monsters[i] == null || !monsters[i].activeSelf)
                 continue;
                 
                 turnImage.sprite = monsters[i].GetComponent<SpriteRenderer>().sprite;
@@ -59,6 +61,18 @@ public class TurnManager : MonoBehaviour
                 yield return new WaitForSeconds(1f);
             }
             playerTurnend = false;
+        }
+        Debug.Log(monsters.Count);
+        if (monsters.Count == 0)
+        {
+            GameManager.Instance.winCount++;
+            Debug.Log(GameManager.Instance.winCount);
+            winObj.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("you Lose");
+            loseObj.SetActive(true);
         }
     }
 }

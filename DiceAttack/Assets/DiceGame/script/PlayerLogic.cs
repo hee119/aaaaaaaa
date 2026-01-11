@@ -79,29 +79,38 @@ public class PlayerLogic : MonoBehaviour
     }
     public IEnumerator PlayerTurnStart()
     {
-        count = TurnManager.Instance.monsters.Count;
-        Debug.Log(count);
-        if (player.isDead || TurnManager.Instance.playerTurnend)
-            yield break;
-        
-            rerollCount = count;
-            yield return new WaitUntil(() => rerollCount <= 0);
-            TurnManager.Instance.playerTurnend = true;
+        if (player.isDead) yield break;
 
-            
-            yield return new WaitForSeconds(1f);
+        TurnManager.Instance.playerTurnend = false;
+
+        count = TurnManager.Instance.monsters.Count;
+
+        if (count == 0)
+        {
+            rerollCount = 0;
+            TurnManager.Instance.playerTurnend = true;
+            yield break;
+        }
+
+        // 새로운 턴마다 rerollCount를 초기화
+        rerollCount = count;
+        yield return new WaitUntil(() => rerollCount <= 0);
+
+        TurnManager.Instance.playerTurnend = true;
     }
+
 
     public void Attack()
     {
-        if(!player.isDead && !TurnManager.Instance.playerTurnend && !isReroll)
+        if(!player.isDead && !TurnManager.Instance.playerTurnend && !isReroll && TurnManager.Instance.monsters.Count != 0)
         StartCoroutine(AttackCor());
     }
 
     IEnumerator AttackCor()
     {
-        if (rerollCount < 1)
+        if (rerollCount < 1 || TurnManager.Instance.monsters.Count == 0)
         {
+            TurnManager.Instance.playerTurnend = true;
             yield break;
         }
         if(player.isDead || isReroll)
@@ -149,6 +158,12 @@ public class PlayerLogic : MonoBehaviour
 
     public IEnumerator Reroll(int diceCount)
     {
+        if (rerollCount < 1 || TurnManager.Instance.monsters.Count == 0)
+        {
+            rerollCount = 0;
+            TurnManager.Instance.playerTurnend = true;
+            yield break;
+        }
         if (targetMonsterStats.isDead)
         {
             yield break;
