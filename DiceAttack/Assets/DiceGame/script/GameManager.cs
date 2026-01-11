@@ -21,14 +21,17 @@ public class GameManager : MonoBehaviour
         Instance = this;
         // 씬 전환에도 파괴되지 않게 함
         DontDestroyOnLoad(gameObject);
-        if(SceneManager.GetActiveScene().name != "Map")
-        nowScene = int.Parse(SceneManager.GetActiveScene().name);
     }
 
     private void Start()
     {
-        
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(SceneManager.GetActiveScene().name != "Map")
+            nowScene = int.Parse(SceneManager.GetActiveScene().name);
+    }
     
 }

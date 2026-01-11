@@ -1485,7 +1485,7 @@ MonoBehaviour:
   - {fileID: 1385724266}
   - {fileID: 563309369}
   - {fileID: 1390737591}
-  player: {fileID: 0}
+  player: {fileID: 1737018581}
   stage: 0
 --- !u!1 &704796922
 GameObject:

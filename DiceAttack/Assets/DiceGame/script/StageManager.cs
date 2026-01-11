@@ -10,12 +10,12 @@ public class StageManager : MonoBehaviour
     void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        stage = GameManager.Instance.nowScene;
     }
 
     void Start()
     {
         UpdateMap();
+        stage = GameManager.Instance.nowScene;
         player.transform.position = playerTrans[stage].transform.position;
     }
 

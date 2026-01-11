@@ -78,6 +78,7 @@ public class StatManager : MonoBehaviour
     
     void Die()
     {
+        TurnManager.Instance.monsters.Remove(gameObject);
         statPool.Release(this);
         Debug.Log($"나주금{this}");
     }
