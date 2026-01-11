@@ -138,6 +138,12 @@ public class PlayerLogic : MonoBehaviour
                     DiceImages[i].sprite = DiceSprites[rand];
                     DFS.text = $"{defence}";
                 }
+                else if (dice[i].CompareTag("GambleDice"))
+                {
+                    yield return Reroll(i);
+                    DiceImages[i].sprite = DiceSprites[rand];
+                    ATK.text = $"{attack}";
+                }
             }
             rerollCount--;
             isReroll = false;
@@ -193,6 +199,18 @@ public class PlayerLogic : MonoBehaviour
                     case 4: defence += 4 + firstDefence; break;
                     case 5: defence += 5 + firstDefence; break;
                     case 6: defence += 6 + firstDefence; break;
+                }
+            }
+            else if (dice[diceCount].CompareTag("GambleDice"))
+            {
+                switch (rand)
+                {
+                    case 1: attack = 0; break;
+                    case 2: attack += (10 + firstAttack) * 2; break;
+                    case 3: attack = 0; break;
+                    case 4: attack += (10 + firstAttack) * 2; break;
+                    case 5: attack = 0; break;
+                    case 6: attack += (10 + firstAttack) * 2; break;
                 }
             }
             DiceObj.SetActive(true);

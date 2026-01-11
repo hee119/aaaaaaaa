@@ -17,6 +17,7 @@ public class GambleGame : MonoBehaviour
     public Image dice;
     public Sprite[] dices;
     public HpAndTrophy hpAndTrophy;
+    public GameObject explanation;
 
     private void Awake()
     {
@@ -59,16 +60,6 @@ public class GambleGame : MonoBehaviour
                 break;
         }
         StartCoroutine(a(rand));
-        if (loses == 3)
-        {
-            loseImage.SetActive(true);
-            lose = true;
-        }
-        else if (wins == 3)
-        {
-            winImage.SetActive(true);
-            win = true;
-        }
     }
     public void Odd()
     {
@@ -98,16 +89,7 @@ public class GambleGame : MonoBehaviour
         }
 
         StartCoroutine(a(rand));
-        if (loses == 3)
-        {
-            loseImage.SetActive(true);
-            lose = true;
-        }
-        else if (wins == 3)
-        {
-            winImage.SetActive(true);
-            win = true;
-        }
+        
     }
 
     IEnumerator a(int rand)
@@ -123,5 +105,20 @@ public class GambleGame : MonoBehaviour
         odd.SetActive(true);
         hpAndTrophy.Hp();
         hpAndTrophy.Trophy();
+        if (loses == 3)
+        {
+            loseImage.SetActive(true);
+            lose = true;
+        }
+        else if (wins == 3)
+        {
+            winImage.SetActive(true);
+            win = true;
+        }
+    }
+
+    public void Explanation()
+    {
+        explanation.SetActive(true);
     }
 }
