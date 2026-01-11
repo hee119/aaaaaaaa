@@ -7,8 +7,8 @@ public class GambleGame : MonoBehaviour
     public static GambleGame Instance { get; private set; }
     public bool win = false;
     public bool lose = false;
-    int wins = 0;
-    int loses = 0;
+    public int wins = 0;
+    public int loses = 0;
     public GameObject winImage;
     public GameObject loseImage;
     public GameObject diceRerollImage;
@@ -16,6 +16,7 @@ public class GambleGame : MonoBehaviour
     public GameObject odd;
     public Image dice;
     public Sprite[] dices;
+    public HpAndTrophy hpAndTrophy;
 
     private void Awake()
     {
@@ -60,10 +61,12 @@ public class GambleGame : MonoBehaviour
         StartCoroutine(a(rand));
         if (loses == 3)
         {
+            loseImage.SetActive(true);
             lose = true;
         }
         else if (wins == 3)
         {
+            winImage.SetActive(true);
             win = true;
         }
     }
@@ -97,10 +100,12 @@ public class GambleGame : MonoBehaviour
         StartCoroutine(a(rand));
         if (loses == 3)
         {
+            loseImage.SetActive(true);
             lose = true;
         }
         else if (wins == 3)
         {
+            winImage.SetActive(true);
             win = true;
         }
     }
@@ -114,5 +119,9 @@ public class GambleGame : MonoBehaviour
         dice.enabled = true;
         yield return new WaitForSeconds(0.4f);
         dice.enabled = false;
+        even.SetActive(true);
+        odd.SetActive(true);
+        hpAndTrophy.Hp();
+        hpAndTrophy.Trophy();
     }
 }
