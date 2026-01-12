@@ -49,8 +49,6 @@ public class StatManager : MonoBehaviour
             if (defenseIcon != null)  
             defenseIcon.SetActive(false);
         }
-
-        defense = 0;
         if (hp <= 0 && !isDead)
         {
             isDead = true;

@@ -160,7 +160,7 @@ public class PlayerLogic : MonoBehaviour
 
             if (defence > firstDefence)
             {
-                targetMonsterStats.Defense(defence);
+                player.Defense(defence);
                 Debug.Log("방어");
             }
         }
