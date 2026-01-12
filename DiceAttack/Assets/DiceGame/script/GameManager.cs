@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if(SceneManager.GetActiveScene().name != "Map")
-            nowScene = int.Parse(SceneManager.GetActiveScene().name);
+            nowScene = SceneManager.GetActiveScene().buildIndex;
     }
 
     void playerStat()
