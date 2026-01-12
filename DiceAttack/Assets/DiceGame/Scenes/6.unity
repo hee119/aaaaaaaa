@@ -1934,7 +1934,8 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4393825221139067033, guid: 2cd5f7efde8a5a548b513718d2ca0da4, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4177991357479963456, guid: 2cd5f7efde8a5a548b513718d2ca0da4, type: 3}
       insertIndex: -1
@@ -3773,6 +3774,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StageManager
   clearText: []
+  playerTrans: []
+  player: {fileID: 0}
+  stage: 0
 --- !u!1 &1273610762
 GameObject:
   m_ObjectHideFlags: 0
@@ -4807,6 +4811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   winCount: 0
+  nowScene: 0
 --- !u!4 &2077569425
 Transform:
   m_ObjectHideFlags: 0

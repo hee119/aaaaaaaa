@@ -1934,7 +1934,8 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4393825221139067033, guid: 2cd5f7efde8a5a548b513718d2ca0da4, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4177991357479963456, guid: 2cd5f7efde8a5a548b513718d2ca0da4, type: 3}
       insertIndex: -1
