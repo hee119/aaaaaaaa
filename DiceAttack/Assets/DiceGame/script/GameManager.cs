@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         // 씬 전환에도 파괴되지 않게 함
         DontDestroyOnLoad(gameObject);
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<StatManager>();
+        player = GameObject.FindGameObjectWithTag("MapPlayer").GetComponent<StatManager>();
     }
 
     private void Start()

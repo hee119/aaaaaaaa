@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
-            Debug.Log("<color=green>¸Å´ÏÀú ¿Ï¼º¤·¤·</color>");
+            Debug.Log("<color=green>ï¿½Å´ï¿½ï¿½ï¿½ ï¿½Ï¼ï¿½ï¿½ï¿½ï¿½ï¿½</color>");
         }
         else { Destroy(gameObject); }
     }
@@ -30,22 +30,22 @@ public class PlayerManager : MonoBehaviour
         if (player != null && hasSavedPos)
         {
             player.transform.position = new Vector3(savedPosition.x, savedPosition.y, -1f);
-            Debug.Log("<color=cyan>°³±¸¸® À§Ä¡: </color>" + savedPosition);
+            Debug.Log("<color=cyan>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡: </color>" + savedPosition);
         }
         else if (player == null)
         {
-            Debug.LogError("<color=red>°³±¸¸®´Â Æú Â¦ Æú Â¦.... ¶Ç ¾îµð°¬¾î</color>");
+            Debug.LogError("<color=red>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Â¦ ï¿½ï¿½ Â¦.... ï¿½ï¿½ ï¿½ï¿½ð°¬¾ï¿½</color>");
         }
     }
 
     public void SaveCurrentPosition()
     {
-        GameObject player = GameObject.FindWithTag("Player");
+        GameObject player = GameObject.FindWithTag("MapPlayer");
         if (player != null)
         {
             savedPosition = player.transform.position;
             hasSavedPos = true;
-            Debug.Log("<color=yellow>À§Ä¡ ±â¾ï ¿Ï·á!</color>");
+            Debug.Log("<color=yellow>ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½!</color>");
         }
     }
 }

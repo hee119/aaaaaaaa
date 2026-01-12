@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
-    public GameObject[] clearText;
+    public GameObject[] clearImage;
     public GameObject[] playerTrans;
     public GameObject player;
     public int stage;
@@ -21,10 +21,10 @@ public class StageManager : MonoBehaviour
 
     void UpdateMap()
     {
-        for (int i = 0; i < clearText.Length; i++)
+        for (int i = 0; i < clearImage.Length; i++)
         {
             if(GameManager.Instance.winCount[i])
-            clearText[i].SetActive(true);
+                clearImage[i].SetActive(true);
         }
     }
 }

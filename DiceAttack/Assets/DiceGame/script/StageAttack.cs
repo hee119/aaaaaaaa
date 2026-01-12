@@ -16,28 +16,28 @@ public class StageAttack : MonoBehaviour
     {
         Debug.Log(trans.name);
         Debug.Log(manager);                       // manager가 null인지 확인
-        Debug.Log(manager.clearText.Length);      // 배열 길이 확인
-        Debug.Log(manager.clearText[0]);          // 0번 요소 확인
+        Debug.Log(manager.clearImage.Length);      // 배열 길이 확인
+        Debug.Log(manager.clearImage[0]);          // 0번 요소 확인
 
-        if (manager.clearText[0].activeSelf && int.Parse(trans.name) == 1)
+        if (manager.clearImage[0].activeSelf && int.Parse(trans.name) == 1)
         {
             SceneManager.LoadScene(trans.name);
         }
-        if (manager.clearText[1].activeSelf && (int.Parse(trans.name) == 2 || int.Parse(trans.name) == 3))
-        {
-            SceneManager.LoadScene(trans.name);
-        }
-
-        if (manager.clearText[2].activeSelf && (int.Parse(trans.name) == 3 || int.Parse(trans.name) == 5 || int.Parse(trans.name) == 4))
+        if (manager.clearImage[1].activeSelf && (int.Parse(trans.name) == 2 || int.Parse(trans.name) == 3))
         {
             SceneManager.LoadScene(trans.name);
         }
 
-        if  (manager.clearText[4].activeSelf  && int.Parse(trans.name) == 6)
+        if (manager.clearImage[2].activeSelf && (int.Parse(trans.name) == 3 || int.Parse(trans.name) == 5 || int.Parse(trans.name) == 4))
         {
             SceneManager.LoadScene(trans.name);
         }
 
-        if (manager.clearText[5].activeSelf && (int.Parse(trans.name) == 2 || int.Parse(trans.name) == 3)) ;
+        if  (manager.clearImage[4].activeSelf  && int.Parse(trans.name) == 6)
+        {
+            SceneManager.LoadScene(trans.name);
+        }
+
+        if (manager.clearImage[5].activeSelf && (int.Parse(trans.name) == 2 || int.Parse(trans.name) == 3)) ;
     }
 }
