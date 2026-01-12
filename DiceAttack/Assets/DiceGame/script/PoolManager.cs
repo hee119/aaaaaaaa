@@ -29,11 +29,11 @@ public class PoolManager : MonoBehaviour
         while (enemiesCount < spawnCount)
         {
             enemy = statPool.Get();
-            yield return new WaitForSeconds(1f);
             enemiesCount++;
         }
 
         enemySpawn.Spawn();
+        yield return null;
     }
 
     private StatManager createEnemy()
