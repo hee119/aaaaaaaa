@@ -21,11 +21,10 @@ public class StageManager : MonoBehaviour
 
     void UpdateMap()
     {
-        int count = GameManager.Instance.winCount;
-
         for (int i = 0; i < clearText.Length; i++)
         {
-            clearText[i].SetActive(i < count);
+            if(GameManager.Instance.winCount[i])
+            clearText[i].SetActive(true);
         }
     }
 }

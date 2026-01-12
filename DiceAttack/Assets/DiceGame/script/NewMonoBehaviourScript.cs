@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
@@ -61,7 +62,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             if (diceCount >= 14)
             {
-                GameManager.Instance.winCount++;
+                GameManager.Instance.winCount[SceneManager.GetActiveScene().buildIndex] = true;
                 win = true;
                 winImage.SetActive(true);
             }

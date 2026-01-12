@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
@@ -65,7 +66,7 @@ public class TurnManager : MonoBehaviour
         Debug.Log(monsters.Count);
         if (monsters.Count == 0)
         {
-            GameManager.Instance.winCount++;
+            GameManager.Instance.winCount[SceneManager.GetActiveScene().buildIndex] = true;
             Debug.Log(GameManager.Instance.winCount);
             winObj.SetActive(true);
         }

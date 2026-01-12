@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GambleGame : MonoBehaviour
@@ -112,7 +113,7 @@ public class GambleGame : MonoBehaviour
         }
         else if (wins == 3)
         {
-            GameManager.Instance.winCount++;
+            GameManager.Instance.winCount[SceneManager.GetActiveScene().buildIndex] = true;
             winImage.SetActive(true);
             win = true;
         }
