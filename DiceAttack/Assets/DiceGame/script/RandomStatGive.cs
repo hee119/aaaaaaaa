@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class RandomStatGive : MonoBehaviour
 {
-    public TextMeshPro typeText;
-    public TextMeshPro statText;
+    public TextMeshProUGUI explane;
+    private StatType statType;
+    private int stat = 0;
+
     enum StatType
     {
         Hp,
@@ -12,17 +14,44 @@ public class RandomStatGive : MonoBehaviour
         Df
     }
 
-    void Awake()
-    {
-        
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         int rand = Random.Range(0, 3);
-        StatType statType = (StatType)rand;
-        typeText.text = statType.ToString();
-        int stat = Random.Range(1, 10);
-        statText.text = stat.ToString();
+        statType = (StatType)rand;
+
+        stat = Random.Range(1, 10);
+
+        Explane(stat);
     }
+
+    void Explane(int stat)
+    {
+        switch (statType)
+        {
+            case StatType.Hp: 
+                explane.text = $"HP {stat} high";
+                break;
+            case StatType.Ak:
+                explane.text = $"Attack {stat} high";
+                break;
+            case StatType.Df:
+                explane.text = $"Defense {stat} high";
+                break;
+        }
+    }
+
+    public void click()
+    {
+        switch (statType)
+        {
+            case StatType.Hp:
+                GameManager.Instance.Hp += stat;
+                break;
+            case StatType.Ak:
+                GameManager.Instance.Ak += stat;
+                break;
+            case StatType.Df:
+                GameManager.Instance.Df += stat;
+                break;
+        }    }
 }
