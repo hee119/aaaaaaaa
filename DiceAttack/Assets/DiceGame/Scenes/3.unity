@@ -1579,7 +1579,7 @@ GameObject:
   - component: {fileID: 790554442}
   - component: {fileID: 790554441}
   - component: {fileID: 790554440}
-  - component: {fileID: 790554439}
+  - component: {fileID: 790554443}
   m_Layer: 5
   m_Name: "\uB3CC\uC544\uAC00\uAE30"
   m_TagString: Untagged
@@ -1607,18 +1607,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 1, y: 0}
---- !u!114 &790554439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 790554437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb9c0fcf507eb4c499598078fe5c8a44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Map
 --- !u!114 &790554440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1663,8 +1651,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 790554439}
-        m_TargetAssemblyTypeName: Map, Assembly-CSharp
+      - m_Target: {fileID: 790554443}
+        m_TargetAssemblyTypeName: a, Assembly-CSharp
         m_MethodName: OpenMap
         m_Mode: 1
         m_Arguments:
@@ -1713,6 +1701,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 790554437}
   m_CullTransparentMesh: 1
+--- !u!114 &790554443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790554437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b3e835dab6b4f8ca9a746e05ef6507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::a
 --- !u!1 &849616928
 GameObject:
   m_ObjectHideFlags: 0
