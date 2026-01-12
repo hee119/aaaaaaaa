@@ -112,6 +112,7 @@ public class GambleGame : MonoBehaviour
         }
         else if (wins == 3)
         {
+            GameManager.Instance.winCount++;
             winImage.SetActive(true);
             win = true;
         }

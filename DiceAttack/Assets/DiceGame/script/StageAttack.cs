@@ -37,5 +37,7 @@ public class StageAttack : MonoBehaviour
         {
             SceneManager.LoadScene(trans.name);
         }
+
+        if (manager.clearText[4].activeSelf && (int.Parse(trans.name) == 2 || int.Parse(trans.name) == 3)) ;
     }
 }

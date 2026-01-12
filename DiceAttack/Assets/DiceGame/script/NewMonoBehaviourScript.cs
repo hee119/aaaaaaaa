@@ -61,6 +61,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             if (diceCount >= 14)
             {
+                GameManager.Instance.winCount++;
                 win = true;
                 winImage.SetActive(true);
             }
