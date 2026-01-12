@@ -24,7 +24,7 @@ public class PlayerLogic : MonoBehaviour
     public TMP_Text CTC;
     public Sprite[] DiceSprites;
     public Image diceImage;
-    public GameObject DiceObj;
+    public GameObject[] DiceObj;
     public bool isReroll;
     private Image[] DiceImages = new Image[3];
     private int rand;
@@ -229,13 +229,9 @@ public class PlayerLogic : MonoBehaviour
                     case 6: player.hp += 6 + firstAttack; break;
                 }
             }
-            DiceObj.SetActive(true);
+            DiceObj[diceCount].SetActive(true);
             yield return new WaitForSeconds(1f);
-            DiceObj.SetActive(false);
-            diceImage.sprite = DiceSprites[rand];
-            diceImage.enabled = true;
-            yield return new WaitForSeconds(0.5f);
-            diceImage.enabled = false;
+            DiceObj[diceCount].SetActive(false);
         }
 
     void Critical()

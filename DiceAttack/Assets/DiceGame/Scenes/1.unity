@@ -542,7 +542,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 10.700549, y: 10.700549, z: 0.53502744}
+  m_LocalScale: {x: 35, y: 35, z: 1.75}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1559791292}
@@ -944,7 +944,10 @@ MonoBehaviour:
   - {fileID: -8216429587981984177, guid: 11327ee7dabd7414eac865f191274d50, type: 3}
   - {fileID: 5422754894264627374, guid: f17c87472484e4860949b06ac5683546, type: 3}
   diceImage: {fileID: 165880612}
-  DiceObj: {fileID: 1193639752}
+  DiceObj:
+  - {fileID: 1193639752}
+  - {fileID: 213285068}
+  - {fileID: 1123612167}
   isReroll: 0
   spawnCount: {fileID: 1909459456}
 --- !u!95 &228424769
@@ -3307,7 +3310,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 10.700549, y: 10.700549, z: 0.53502744}
+  m_LocalScale: {x: 35, y: 35, z: 1.75}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 846799810}
@@ -3600,7 +3603,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 10.700549, y: 10.700549, z: 0.53502744}
+  m_LocalScale: {x: 35, y: 35, z: 1.75}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1918705925}
