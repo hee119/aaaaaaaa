@@ -34,7 +34,7 @@ public class Dice : MonoBehaviour
                 _renderer.color = Color.white;
             }
         }
-        else if (NewMonoBehaviourScript.Instance != null && NewMonoBehaviourScript.Instance.win)
+        if (NewMonoBehaviourScript.Instance != null && NewMonoBehaviourScript.Instance.win)
         {
             if (gameObject.CompareTag("AttackDice"))
             {
