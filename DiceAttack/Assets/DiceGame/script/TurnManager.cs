@@ -67,7 +67,8 @@ public class TurnManager : MonoBehaviour
         if (monsters.Count == 0)
         {
             GameManager.Instance.winCount[SceneManager.GetActiveScene().buildIndex] = true;
-            Debug.Log(GameManager.Instance.winCount);
+            Debug.Log(GameManager.Instance.winCount[SceneManager.GetActiveScene().buildIndex]);
+            Debug.Log(SceneManager.GetActiveScene().buildIndex);
             winObj.SetActive(true);
         }
         else
