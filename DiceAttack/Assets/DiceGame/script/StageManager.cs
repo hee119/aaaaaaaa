@@ -16,7 +16,7 @@ public class StageManager : MonoBehaviour
     {
         UpdateMap();
         stage = GameManager.Instance.nowScene;
-        player.transform.position = playerTrans[stage].transform.position;
+        player.transform.position = GameObject.FindWithTag("생성된위치태그").transform.position;
     }
 
     void UpdateMap()
