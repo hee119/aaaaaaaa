@@ -13,17 +13,68 @@ public class Dice : MonoBehaviour
 
     public void Touch()
     {
-        if (gameObject.CompareTag("AttackDice"))
+        if (GambleGame.Instance != null && GambleGame.Instance.win)
         {
-            gameObject.tag = "DefenceDice";
-            // 1. 색상 값을 변경하고
-            _renderer.color = Color.blue; 
+            if (gameObject.CompareTag("AttackDice"))
+            {
+                gameObject.tag = "DefenceDice";
+                // 1. 색상 값을 변경하고
+                _renderer.color = Color.blue;
+            }
+            else if (gameObject.CompareTag("GambleDice"))
+            {
+                gameObject.tag = "AttackDice";
+                // 2. 즉시 적용합니다.
+                _renderer.color = Color.red;
+            }
+            else if (gameObject.CompareTag("DefenceDice"))
+            {
+                gameObject.tag = "GambleDice";
+                // 2. 즉시 적용합니다.
+                _renderer.color = Color.white;
+            }
         }
-        else if (gameObject.CompareTag("DefenceDice"))
+        if (NewMonoBehaviourScript.Instance != null && NewMonoBehaviourScript.Instance.win)
         {
-            gameObject.tag = "AttackDice";
-            // 2. 즉시 적용합니다.
-            _renderer.color = Color.red;
+            if (gameObject.CompareTag("AttackDice"))
+            {
+                gameObject.tag = "DefenceDice";
+                // 1. 색상 값을 변경하고
+                _renderer.color = Color.blue;
+            }
+            else if (gameObject.CompareTag("DefenceDice"))
+            {
+                gameObject.tag = "GambleDice";
+                // 2. 즉시 적용합니다.
+                _renderer.color = Color.white;
+            }
+            else if (gameObject.CompareTag("GambleDice"))
+            {
+                gameObject.tag = "MadicDice";
+                // 2. 즉시 적용합니다.
+                _renderer.color = Color.green;
+            }
+            else if (gameObject.CompareTag("MadicDice"))
+            {
+                gameObject.tag = "AttackDice";
+                // 2. 즉시 적용합니다.
+                _renderer.color = Color.red;
+            }
+        }
+        else
+        {
+            if (gameObject.CompareTag("AttackDice"))
+            {
+                gameObject.tag = "DefenceDice";
+                // 1. 색상 값을 변경하고
+                _renderer.color = Color.blue;
+            }
+            else if (gameObject.CompareTag("DefenceDice"))
+            {
+                gameObject.tag = "AttackDice";
+                // 2. 즉시 적용합니다.
+                _renderer.color = Color.red;
+            }
         }
     }
     

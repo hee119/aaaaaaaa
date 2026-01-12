@@ -79,6 +79,10 @@ public class PlayerLogic : MonoBehaviour
     }
     public IEnumerator PlayerTurnStart()
     {
+        defence = 0;
+        attack = 0;
+        UpdateUi();
+        
         if (player.isDead) yield break;
 
         TurnManager.Instance.playerTurnend = false;
@@ -115,8 +119,8 @@ public class PlayerLogic : MonoBehaviour
         }
         if(player.isDead || isReroll)
         yield break;
-        attack = firstAttack;
-        defence = firstDefence;
+        attack = 0;
+        UpdateUi();
         if (targetMonsterStats == null)
         {
             Debug.Log("공격대상을 선택하세요");
@@ -137,6 +141,12 @@ public class PlayerLogic : MonoBehaviour
                     yield return Reroll(i);
                     DiceImages[i].sprite = DiceSprites[rand];
                     DFS.text = $"{defence}";
+                }
+                else if (dice[i].CompareTag("GambleDice"))
+                {
+                    yield return Reroll(i);
+                    DiceImages[i].sprite = DiceSprites[rand];
+                    ATK.text = $"{attack}";
                 }
             }
             rerollCount--;
@@ -195,6 +205,30 @@ public class PlayerLogic : MonoBehaviour
                     case 6: defence += 6 + firstDefence; break;
                 }
             }
+            else if (dice[diceCount].CompareTag("GambleDice"))
+            {
+                switch (rand)
+                {
+                    case 1: attack = 0; break;
+                    case 2: attack += (10 + firstAttack) * 2; break;
+                    case 3: attack = 0; break;
+                    case 4: attack += (10 + firstAttack) * 2; break;
+                    case 5: attack = 0; break;
+                    case 6: attack += (10 + firstAttack) * 2; break;
+                }
+            }
+            else if (dice[diceCount].CompareTag("MadicDice"))
+            {
+                switch (rand)
+                {
+                    case 1: player.hp += 1 + firstAttack; break;
+                    case 2: player.hp += 2 + firstAttack; break;
+                    case 3: player.hp += 3 + firstAttack; break;
+                    case 4: player.hp += 4 + firstAttack; break;
+                    case 5: player.hp += 5 + firstAttack; break;
+                    case 6: player.hp += 6 + firstAttack; break;
+                }
+            }
             DiceObj.SetActive(true);
             yield return new WaitForSeconds(1f);
             DiceObj.SetActive(false);
@@ -218,5 +252,11 @@ public class PlayerLogic : MonoBehaviour
         }
         
         CTC.text = critical.ToString();
+    }
+
+    void UpdateUi()
+    {
+        ATK.text = $"{attack}";
+        DFS.text = $"{defence}";
     }
     }
