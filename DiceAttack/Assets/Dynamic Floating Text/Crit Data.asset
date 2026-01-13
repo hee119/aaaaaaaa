@@ -10,31 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcff3a5a705644c4e9a3068b0236a108, type: 3}
-  m_Name: New Dynamic Text Data
-  m_EditorClassIdentifier: Assembly-CSharp::DynamicTextData
-  id: 0
+  m_Name: Crit Data
+  m_EditorClassIdentifier: 
+  id: 12
   colours:
-  - {r: 1, g: 0, b: 0, a: 0}
-  - {r: 1, g: 0.759434, b: 0.759434, a: 0}
+  - {r: 1, g: 0.93247044, b: 0, a: 1}
+  - {r: 1, g: 0.7870383, b: 0, a: 1}
   sizes:
-  - 1
-  - 2
-  font: {fileID: 11400000, guid: 241c6acceca8b844baad6cbcf60cefc7, type: 2}
+  - 1.1
+  - 1.2
+  font: {fileID: 0}
   bold: 0
   italic: 0
   underline: 0
   strikethrough: 0
   lifetime: 2
-  numberOfColourAlternations: 3
-  numberOfSizeAlternations: 1
-  colourAlternationDuration: 0.15
-  sizeAlternationDuration: 0.15
+  numberOfColourAlternations: 10
+  numberOfSizeAlternations: 10
+  colourAlternationDuration: 0.1
+  sizeAlternationDuration: 0.1
   enterDuration: 0.1
-  exitDuration: 0.5
+  exitDuration: 0.1
   maxDrift: 0
-  maxHeight: 0
-  popModifier: 0
+  maxHeight: 0.5
+  popModifier: 2.5
   colourAlternationMode: 1
   sizeAlternationMode: 1
-  enterType: 00000000
-  exitType: 1
+  enterType: 0200000004000000
+  exitType: 2

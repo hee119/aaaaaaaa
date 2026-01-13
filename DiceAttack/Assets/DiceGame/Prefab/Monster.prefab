@@ -669,7 +669,7 @@ MonoBehaviour:
   isDead: 0
   defense: 0
   animator: {fileID: 9222679337546715377}
-  critTextData: {fileID: 11400000, guid: 5ccd842b75fff44c99020efffeefca27, type: 2}
+  critTextData: {fileID: 11400000, guid: d565511e5051748ec8eeba2e5e2e0f39, type: 2}
 --- !u!61 &8566332543787302591
 BoxCollider2D:
   m_ObjectHideFlags: 0
