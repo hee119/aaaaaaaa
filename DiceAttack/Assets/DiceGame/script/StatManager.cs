@@ -74,8 +74,6 @@ public class StatManager : MonoBehaviour
             }
             animator.SetTrigger("Die");
             if (hpSlider != null) hpSlider.gameObject.SetActive(false);
-
-            yield return new WaitForSeconds(5f);
             Die();
         }
     }
