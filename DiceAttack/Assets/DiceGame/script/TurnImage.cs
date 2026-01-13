@@ -50,9 +50,9 @@ public class TurnImage : MonoBehaviour
                 {
                     if (!isOne)
                     {
+                        isOne = true;
                         turnImage.Add(playerImage);
                         turnImage.Add(TurnManager.Instance.monsters[0]);
-                        isOne = true;
                     }
                     turnImageUI[i].sprite = turnImage[i].GetComponent<SpriteRenderer>().sprite;
                 }

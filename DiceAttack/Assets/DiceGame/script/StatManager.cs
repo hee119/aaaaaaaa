@@ -75,6 +75,9 @@ public class StatManager : MonoBehaviour
             animator.SetTrigger("Die");
             if (hpSlider != null) hpSlider.gameObject.SetActive(false);
             Die();
+            gameObject.transform.GetChild(2).gameObject.SetActive(false);
+            yield return new WaitForSeconds(5f);
+            statPool.Release(this); 
         }
     }
 
@@ -93,7 +96,6 @@ public class StatManager : MonoBehaviour
     { 
         TurnManager.Instance.monsters.Remove(gameObject);
         TurnImage.Instance.turnImage.Remove(gameObject);
-        statPool.Release(this);
         TurnImage.Instance.turnImage.Remove(player);
         TurnImage.Instance.Turn();
         Debug.Log($"나주금{this}");
@@ -103,7 +105,7 @@ public class StatManager : MonoBehaviour
     {
         isDead = false;
         hp = maxHp; // 100 대신 설정된 maxHp로 초기화
-
+        gameObject.transform.GetChild(2).gameObject.SetActive(true);
         // [핵심] 오브젝트 풀에서 다시 나올 때 슬라이더 상태 복구
         if (hpSlider != null)
         {

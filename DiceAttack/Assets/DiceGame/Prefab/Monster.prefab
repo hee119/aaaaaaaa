@@ -675,6 +675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HpsliderPos
   hpText: {fileID: 469713391095222991}
+  fillSpeed: 0.5
 --- !u!1 &8427768912434817020
 GameObject:
   m_ObjectHideFlags: 0

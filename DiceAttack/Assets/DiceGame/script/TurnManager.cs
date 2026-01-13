@@ -51,7 +51,7 @@ public class TurnManager : MonoBehaviour
             yield return new WaitForSeconds(3f);
             for (int i = 0; i < monsters.Count; i++)
             {
-                if(monsters[i] == null || !monsters[i].activeSelf)
+                if(monsters[i] == null || !monsters[i].activeSelf || monsters[i].GetComponent<StatManager>().isDead)
                 continue;
                 Debug.Log(monsters.Count);
                 yield return monsters[i].GetComponent<EnemyLogic>().MonsterTurnStart();
