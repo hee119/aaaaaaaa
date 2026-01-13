@@ -96,7 +96,7 @@ public class StatManager : MonoBehaviour
         statPool.Release(this);
         TurnManager.Instance.monsters.Remove(gameObject);
         TurnImage.Instance.turnImage.Remove(gameObject);
-        TurnImage.Instance.turnImage.Remove(player);
+        TurnImage.Instance.PlayerRemove(player);
         TurnImage.Instance.TurnUpdate();
         Debug.Log($"나주금{this}");
     }

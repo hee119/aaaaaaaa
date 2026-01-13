@@ -67,6 +67,14 @@ public class TurnImage : MonoBehaviour
         turnImage.Add(a);
         Turn();
     }
-    
+
+    public void PlayerRemove(GameObject player)
+    {
+        int lastIndex = turnImage.LastIndexOf(gameObject);
+        if (lastIndex >= 0)
+        {
+            turnImage.RemoveAt(lastIndex);
+        }
+    }
 
 }
