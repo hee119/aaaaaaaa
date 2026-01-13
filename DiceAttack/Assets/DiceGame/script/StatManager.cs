@@ -13,6 +13,7 @@ public class StatManager : MonoBehaviour
     public Animator animator;
     private GameObject blood;
     [CanBeNull] private GameObject defenseIcon;
+    private GameObject player;
 
     private IObjectPool<StatManager> statPool;
     private HpsliSlider hpSlider; // private으로 관리 (자식에서 찾음)
@@ -20,6 +21,10 @@ public class StatManager : MonoBehaviour
     AudioSource audio;
     public DynamicTextData critTextData;
 
+    void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     void Start()
     {
         defenseIcon = transform.Find("defenseIcon")?.gameObject;
@@ -88,9 +93,10 @@ public class StatManager : MonoBehaviour
 
     void Die()
     {
+        statPool.Release(this);
         TurnManager.Instance.monsters.Remove(gameObject);
         TurnImage.Instance.turnImage.Remove(gameObject);
-        statPool.Release(this);
+        TurnImage.Instance.turnImage.Remove(player);
         TurnImage.Instance.TurnUpdate();
         Debug.Log($"나주금{this}");
     }

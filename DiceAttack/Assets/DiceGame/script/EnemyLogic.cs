@@ -48,7 +48,6 @@ public class EnemyLogic : MonoBehaviour
         Debug.Log($"enemy {defense}");
         if (MonsterStats.isDead)
         {
-            TurnManager.Instance.monsters.Remove(gameObject);
             yield break;
         }
 

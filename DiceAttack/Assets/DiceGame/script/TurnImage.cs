@@ -46,17 +46,15 @@ public class TurnImage : MonoBehaviour
             {
                 if (i < turnImage.Count)
                 turnImageUI[i].sprite = turnImage[i].GetComponent<SpriteRenderer>().sprite;
-                else if (i >= turnImage.Count)
+                else if (1 == TurnManager.Instance.monsters.Count)
                 {
-                    if (isOne)
+                    if (!isOne)
                     {
                         turnImage.Add(playerImage);
                         turnImage.Add(TurnManager.Instance.monsters[0]);
                         isOne = true;
                     }
-
                     turnImageUI[i].sprite = turnImage[i].GetComponent<SpriteRenderer>().sprite;
-                    
                 }
             }
 

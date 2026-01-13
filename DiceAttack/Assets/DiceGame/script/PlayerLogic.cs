@@ -182,6 +182,8 @@ public class PlayerLogic : MonoBehaviour
             yield break;
         }
 
+        attack = firstAttack;
+        player.attack = firstAttack;
         isReroll = true;
             rand = Random.Range(1, 7);
             if (dice[diceCount].CompareTag("AttackDice"))
