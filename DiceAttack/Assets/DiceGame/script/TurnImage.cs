@@ -46,7 +46,7 @@ public class TurnImage : MonoBehaviour
             {
                 if (i < preview.Length)
                 turnImageUI[i].sprite = preview[i].GetComponent<SpriteRenderer>().sprite;
-                else if (i > preview.Length)
+                else if (i >= preview.Length)
                     turnImageUI[i].enabled = false;  
 
             }
