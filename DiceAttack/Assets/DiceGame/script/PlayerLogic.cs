@@ -79,10 +79,10 @@ public class PlayerLogic : MonoBehaviour
     }
     public IEnumerator PlayerTurnStart()
     {
-        defence = firstDefence;
-        attack = firstAttack;
-        player.attack = firstAttack;
-        player.defense = firstDefence;
+        defence = 0;
+        attack = 0;
+        player.attack = 0;
+        player.defense = 0;
         UpdateUi();
         Debug.Log($"player {defence}");
         
@@ -112,8 +112,8 @@ public class PlayerLogic : MonoBehaviour
         if (!player.isDead && !TurnManager.Instance.playerTurnend && !isReroll &&
             TurnManager.Instance.monsters.Count != 0)
         {
-            attack = firstAttack;
-            player.attack = firstAttack;
+            attack = 0;
+            player.attack = 0;
             StartCoroutine(AttackCor());
         }
     }
