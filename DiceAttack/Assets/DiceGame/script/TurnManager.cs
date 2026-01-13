@@ -11,7 +11,7 @@ public class TurnManager : MonoBehaviour
     public PlayerLogic player;
     public StatManager playerStat; 
     public bool playerTurnend;
-    public Image turnImage;
+    public Queue<Image> turnImage;
     public GameObject winObj;
     public GameObject loseObj;
     private void Awake()
@@ -48,14 +48,12 @@ public class TurnManager : MonoBehaviour
                 break;
             Debug.Log(monsters.Count);
             yield return new WaitForSeconds(1f);
-            turnImage.sprite = player.GetComponent<SpriteRenderer>().sprite;
             yield return player.PlayerTurnStart();
             yield return new WaitForSeconds(3f);
             for (int i = 0; i < monsters.Count; i++)
             {
                 if(monsters[i] == null || !monsters[i].activeSelf)
                 continue;
-                turnImage.sprite = monsters[i].GetComponent<SpriteRenderer>().sprite;
                 Debug.Log(monsters.Count);
                 yield return monsters[i].GetComponent<EnemyLogic>().MonsterTurnStart();
                 yield return new WaitForSeconds(1f);
