@@ -1,26 +1,34 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
     public GameObject[] clearImage;
-    public GameObject[] playerTrans;
     public GameObject player;
-    public int stage;
+    public Transform[] stage;
 
-    void Awake()
+    private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("MapPlayer");
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void Start()
     {
         UpdateMap();
-        stage = GameManager.Instance.nowScene;
-        player.transform.position = GameObject.FindWithTag("MapPlayer").transform.position;
+        player = GameObject.FindGameObjectWithTag("MapPlayer");
+        player.transform.position = stage[GameManager.Instance.nowScene].position;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
     }
 
     void UpdateMap()
     {
+        if (SceneManager.GetActiveScene().name != "Map")
+            return;
+
         for (int i = 0; i < clearImage.Length; i++)
         {
             if(GameManager.Instance.winCount[i])

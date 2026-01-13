@@ -9,7 +9,7 @@ public class EnemyLogic : MonoBehaviour
     GameObject defenseIcon;
     private StatManager playerStats;
     private int attack;
-    private int defense;
+    public int defense;
     private int shareStats;
     private StatManager MonsterStats;
 
@@ -30,7 +30,8 @@ public class EnemyLogic : MonoBehaviour
         
     }
     void OnEnable()
-    {if (!TurnManager.Instance.monsters.Contains(gameObject))
+    {
+        if (!TurnManager.Instance.monsters.Contains(gameObject))
         {
             TurnManager.Instance.monsters.Add(gameObject);
         }

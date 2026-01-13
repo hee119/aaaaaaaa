@@ -86,4 +86,8 @@ public class StatManager : MonoBehaviour
         hp = 100; // 또는 maxHp
     }
 
+    public void UpdateUi()
+    {
+        defenseIcon.SetActive(false);
+    }
 }

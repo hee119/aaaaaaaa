@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
         Instance = this;
         // 씬 전환에도 파괴되지 않게 함
         DontDestroyOnLoad(gameObject);
-        player = GameObject.FindGameObjectWithTag("MapPlayer").GetComponent<StatManager>();
     }
 
     private void Start()
@@ -36,8 +35,10 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(SceneManager.GetActiveScene().name != "Map")
-            nowScene = SceneManager.GetActiveScene().buildIndex;
+        if (SceneManager.GetActiveScene().name != "Map")
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<StatManager>();
+        }
     }
 
     void playerStat()

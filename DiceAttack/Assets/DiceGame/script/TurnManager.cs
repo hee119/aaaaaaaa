@@ -55,9 +55,10 @@ public class TurnManager : MonoBehaviour
             {
                 if(monsters[i] == null || !monsters[i].activeSelf)
                 continue;
-                
                 turnImage.sprite = monsters[i].GetComponent<SpriteRenderer>().sprite;
                 Debug.Log(monsters.Count);
+                monsters[i].GetComponent<EnemyLogic>().defense = monsters[i].GetComponent<StatManager>().defense;
+                monsters[i].GetComponent<StatManager>().UpdateUi();
                 yield return monsters[i].GetComponent<EnemyLogic>().MonsterTurnStart();
                 yield return new WaitForSeconds(1f);
             }
@@ -67,8 +68,6 @@ public class TurnManager : MonoBehaviour
         if (monsters.Count == 0)
         {
             GameManager.Instance.winCount[SceneManager.GetActiveScene().buildIndex] = true;
-            Debug.Log(GameManager.Instance.winCount[SceneManager.GetActiveScene().buildIndex]);
-            Debug.Log(SceneManager.GetActiveScene().buildIndex);
             winObj.SetActive(true);
         }
         else
