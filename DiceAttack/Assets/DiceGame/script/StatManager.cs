@@ -18,6 +18,7 @@ public class StatManager : MonoBehaviour
     private HpsliSlider hpSlider; // private으로 관리 (자식에서 찾음)
 
     AudioSource audio;
+    public DynamicTextData critTextData;
 
     void Start()
     {
@@ -35,6 +36,11 @@ public class StatManager : MonoBehaviour
     {
         if (defense < attack)
         {
+            DynamicTextManager.CreateText(
+                transform.position + Vector3.up,
+                $"{attack}",
+                critTextData
+            );
             audio.Play();
             blood.SetActive(true);
             hp -= Mathf.Abs(attack - defense);
@@ -44,6 +50,7 @@ public class StatManager : MonoBehaviour
             audio.Stop();
             if (defenseIcon != null)
                 defenseIcon.SetActive(false);
+            
             blood.SetActive(false);
         }
         else
@@ -84,6 +91,7 @@ public class StatManager : MonoBehaviour
         TurnManager.Instance.monsters.Remove(gameObject);
         TurnImage.Instance.turnImage.Remove(gameObject);
         statPool.Release(this);
+        TurnImage.Instance.TurnUpdate();
         Debug.Log($"나주금{this}");
     }
 
