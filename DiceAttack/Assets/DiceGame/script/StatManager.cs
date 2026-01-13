@@ -43,7 +43,7 @@ public class StatManager : MonoBehaviour
         {
             DynamicTextManager.CreateText2D(
                 transform.position + Vector3.up,
-                $"{attack}",
+                $"{Mathf.Abs(defense - attack)}",
                 critTextData
             );
             audio.Play();

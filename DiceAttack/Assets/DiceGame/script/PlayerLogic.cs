@@ -83,8 +83,6 @@ public class PlayerLogic : MonoBehaviour
         attack = 0;
         player.attack = 0;
         player.defense = 0;
-        UpdateUi();
-        Debug.Log($"player {defence}");
         
         if (player.isDead) yield break;
 
