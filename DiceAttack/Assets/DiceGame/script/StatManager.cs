@@ -1,6 +1,5 @@
 using System.Collections;
 using JetBrains.Annotations;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -14,21 +13,24 @@ public class StatManager : MonoBehaviour
     public Animator animator;
     private GameObject blood;
     [CanBeNull] private GameObject defenseIcon;
-    
+
     private IObjectPool<StatManager> statPool;
-    HpsliSlider hpSlider;
-    
+    private HpsliSlider hpSlider; // private으로 관리 (자식에서 찾음)
+
     AudioSource audio;
-    
+
     void Start()
     {
         defenseIcon = transform.Find("defenseIcon")?.gameObject;
         statPool = PoolManager.Instance.statPool;
         hpSlider = GetComponentInChildren<HpsliSlider>();
-        hp = maxHp;
+
         blood = transform.Find("Blood").gameObject;
         audio = GetComponent<AudioSource>();
+        hp = maxHp;
+        if (hpSlider != null) hpSlider.HpBar(hp, maxHp);
     }
+
     public IEnumerator Hit(int attack)
     {
         if (defense < attack)
@@ -36,19 +38,21 @@ public class StatManager : MonoBehaviour
             audio.Play();
             blood.SetActive(true);
             hp -= Mathf.Abs(attack - defense);
-            hpSlider.HpBar(hp, maxHp);
+            if (hpSlider != null) hpSlider.HpBar(hp, maxHp);
+
             yield return new WaitForSeconds(0.7f);
             audio.Stop();
-            if(defenseIcon != null)
-            defenseIcon.SetActive(false);
+            if (defenseIcon != null)
+                defenseIcon.SetActive(false);
             blood.SetActive(false);
         }
         else
         {
             Debug.Log("완전방어에 성공했습니다.");
-            if (defenseIcon != null)  
-            defenseIcon.SetActive(false);
+            if (defenseIcon != null)
+                defenseIcon.SetActive(false);
         }
+
         if (hp <= 0 && !isDead)
         {
             isDead = true;
@@ -57,7 +61,8 @@ public class StatManager : MonoBehaviour
                 gameObject.transform.GetChild(0).gameObject.SetActive(false);
             }
             animator.SetTrigger("Die");
-            hpSlider.gameObject.SetActive(false);
+            if (hpSlider != null) hpSlider.gameObject.SetActive(false);
+
             yield return new WaitForSeconds(5f);
             Die();
         }
@@ -73,21 +78,24 @@ public class StatManager : MonoBehaviour
     {
         statPool = pool;
     }
-    
+
     void Die()
     {
         TurnManager.Instance.monsters.Remove(gameObject);
         statPool.Release(this);
         Debug.Log($"나주금{this}");
     }
+
     private void OnEnable()
     {
         isDead = false;
-        hp = 100; // 또는 maxHp
-    }
+        hp = maxHp; // 100 대신 설정된 maxHp로 초기화
 
-    public void UpdateUi()
-    {
-        defenseIcon.SetActive(false);
+        // [핵심] 오브젝트 풀에서 다시 나올 때 슬라이더 상태 복구
+        if (hpSlider != null)
+        {
+            hpSlider.gameObject.SetActive(true); // 꺼졌던 슬라이더 켜기
+            hpSlider.HpBar(hp, maxHp);           // 바 수치 꽉 채우기
+        }
     }
 }
