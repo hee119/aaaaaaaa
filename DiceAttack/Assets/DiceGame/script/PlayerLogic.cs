@@ -109,8 +109,13 @@ public class PlayerLogic : MonoBehaviour
 
     public void Attack()
     {
-        if(!player.isDead && !TurnManager.Instance.playerTurnend && !isReroll && TurnManager.Instance.monsters.Count != 0)
-        StartCoroutine(AttackCor());
+        if (!player.isDead && !TurnManager.Instance.playerTurnend && !isReroll &&
+            TurnManager.Instance.monsters.Count != 0)
+        {
+            attack = firstAttack;
+            player.attack = firstAttack;
+            StartCoroutine(AttackCor());
+        }
     }
 
     IEnumerator AttackCor()
@@ -181,9 +186,6 @@ public class PlayerLogic : MonoBehaviour
         {
             yield break;
         }
-
-        attack = firstAttack;
-        player.attack = firstAttack;
         isReroll = true;
             rand = Random.Range(1, 7);
             if (dice[diceCount].CompareTag("AttackDice"))
