@@ -81,6 +81,8 @@ public class PlayerLogic : MonoBehaviour
     {
         defence = firstDefence;
         attack = firstAttack;
+        player.attack = firstAttack;
+        player.defense = firstDefence;
         UpdateUi();
         Debug.Log($"player {defence}");
         

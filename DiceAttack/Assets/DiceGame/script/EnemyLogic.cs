@@ -12,6 +12,8 @@ public class EnemyLogic : MonoBehaviour
     private int defense;
     private int shareStats;
     private StatManager MonsterStats;
+    private int firstDefence;
+    private int firstAttack;
 
     void Awake()
     {
@@ -25,8 +27,8 @@ public class EnemyLogic : MonoBehaviour
         defenseIcon = transform.Find("defenseIcon").gameObject;
         playerStats = playerObj.GetComponent<StatManager>();
         MonsterStats = GetComponent<StatManager>();
-        attack = MonsterStats.attack;
-        defense = MonsterStats.defense;
+        firstAttack = MonsterStats.attack;
+        firstDefence = MonsterStats.defense;
         
     }
     void OnEnable()
@@ -39,8 +41,10 @@ public class EnemyLogic : MonoBehaviour
 
     public IEnumerator MonsterTurnStart()
     {
-        attack = MonsterStats.attack;
-        defense = MonsterStats.defense;
+        attack = firstAttack;
+        defense = firstDefence;
+        MonsterStats.defense = firstDefence;
+        MonsterStats.attack = firstAttack;
         Debug.Log($"enemy {defense}");
         if (MonsterStats.isDead)
         {
