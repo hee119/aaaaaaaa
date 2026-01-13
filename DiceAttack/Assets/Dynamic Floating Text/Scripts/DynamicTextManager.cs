@@ -23,6 +23,9 @@ public class DynamicTextManager : MonoBehaviour
 
     public static void CreateText2D(Vector2 position, string text, DynamicTextData data)
     {
+        if (data == null) {
+            Debug.LogError("DynamicTextData가 비어있습니다!");
+        }
         GameObject newText = Instantiate(canvasPrefab, position, Quaternion.identity);
         newText.transform.GetComponent<DynamicText2D>().Initialise(text, data);
     }

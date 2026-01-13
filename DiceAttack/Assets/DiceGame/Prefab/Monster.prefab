@@ -536,6 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b527e3aa2e9dd4ef086b5dd240ccb4a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HpsliderPos
+  hpText: {fileID: 0}
 --- !u!1 &8427768912434817020
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +669,7 @@ MonoBehaviour:
   isDead: 0
   defense: 0
   animator: {fileID: 9222679337546715377}
+  critTextData: {fileID: 11400000, guid: 5ccd842b75fff44c99020efffeefca27, type: 2}
 --- !u!61 &8566332543787302591
 BoxCollider2D:
   m_ObjectHideFlags: 0

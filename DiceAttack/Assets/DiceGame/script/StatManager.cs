@@ -36,7 +36,7 @@ public class StatManager : MonoBehaviour
     {
         if (defense < attack)
         {
-            DynamicTextManager.CreateText(
+            DynamicTextManager.CreateText2D(
                 transform.position + Vector3.up,
                 $"{attack}",
                 critTextData
