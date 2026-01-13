@@ -10,6 +10,7 @@ public class TurnImage : MonoBehaviour
     public List<GameObject> turnImage = new List<GameObject>();
     public GameObject playerImage;
     public Image[] turnImageUI = new Image[3];
+    private bool isOne;
     private void Awake()
     {
         // 이미 인스턴스가 존재하면 자기 자신 제거
@@ -34,21 +35,29 @@ public class TurnImage : MonoBehaviour
         {
             turnImage.Add(TurnManager.Instance.monsters[i]);
         }
-
+        isOne = false;
         Turn();
     }
 
     void Turn()
     {
        
-            GameObject[] preview = turnImage.ToArray();
             for (int i = 0; i < turnImageUI.Length; i++)
             {
-                if (i < preview.Length)
-                turnImageUI[i].sprite = preview[i].GetComponent<SpriteRenderer>().sprite;
-                else if (i >= preview.Length)
-                    turnImageUI[i].enabled = false;  
+                if (i < turnImage.Count)
+                turnImageUI[i].sprite = turnImage[i].GetComponent<SpriteRenderer>().sprite;
+                else if (i >= turnImage.Count)
+                {
+                    if (isOne)
+                    {
+                        turnImage.Add(playerImage);
+                        turnImage.Add(TurnManager.Instance.monsters[0]);
+                        isOne = true;
+                    }
 
+                    turnImageUI[i].sprite = turnImage[i].GetComponent<SpriteRenderer>().sprite;
+                    
+                }
             }
 
     }
@@ -60,5 +69,6 @@ public class TurnImage : MonoBehaviour
         turnImage.Add(a);
         Turn();
     }
+    
 
 }

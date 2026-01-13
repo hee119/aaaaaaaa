@@ -55,7 +55,7 @@ public class TurnManager : MonoBehaviour
                 continue;
                 Debug.Log(monsters.Count);
                 yield return monsters[i].GetComponent<EnemyLogic>().MonsterTurnStart();
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.5f);
             }
             playerTurnend = false;
         }
