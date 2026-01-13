@@ -41,6 +41,7 @@ public class EnemyLogic : MonoBehaviour
     {
         attack = MonsterStats.attack;
         defense = MonsterStats.defense;
+        Debug.Log($"enemy {defense}");
         if (MonsterStats.isDead)
         {
             TurnManager.Instance.monsters.Remove(gameObject);

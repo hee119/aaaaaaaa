@@ -79,9 +79,10 @@ public class PlayerLogic : MonoBehaviour
     }
     public IEnumerator PlayerTurnStart()
     {
-        defence = player.defense;
-        attack = player.attack;
+        defence = firstDefence;
+        attack = firstAttack;
         UpdateUi();
+        Debug.Log($"player {defence}");
         
         if (player.isDead) yield break;
 
@@ -119,8 +120,6 @@ public class PlayerLogic : MonoBehaviour
         }
         if(player.isDead || isReroll)
         yield break;
-        defence = player.defense;
-        attack = player.attack;
         UpdateUi();
         if (targetMonsterStats == null)
         {
