@@ -914,7 +914,7 @@ MonoBehaviour:
   isDead: 0
   defense: 0
   animator: {fileID: 228424769}
-  critTextData: {fileID: 11400000, guid: a5445a47a1f772043ba96c0acbf4ce17, type: 2}
+  critTextData: {fileID: 11400000, guid: d565511e5051748ec8eeba2e5e2e0f39, type: 2}
 --- !u!114 &228424768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4865,7 +4865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7c18620c323414a849913f889acb05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DynamicTextManager
-  _defaultData: {fileID: 11400000, guid: a5445a47a1f772043ba96c0acbf4ce17, type: 2}
+  _defaultData: {fileID: 11400000, guid: d565511e5051748ec8eeba2e5e2e0f39, type: 2}
   _canvasPrefab: {fileID: 1926280506753864649, guid: e124e19729a322b4281287dcc0eb622b, type: 3}
   _mainCamera: {fileID: 519420032}
 --- !u!4 &1977875637
