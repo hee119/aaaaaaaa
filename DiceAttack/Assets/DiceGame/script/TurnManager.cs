@@ -57,8 +57,6 @@ public class TurnManager : MonoBehaviour
                 continue;
                 turnImage.sprite = monsters[i].GetComponent<SpriteRenderer>().sprite;
                 Debug.Log(monsters.Count);
-                monsters[i].GetComponent<EnemyLogic>().defense = monsters[i].GetComponent<StatManager>().defense;
-                monsters[i].GetComponent<StatManager>().UpdateUi();
                 yield return monsters[i].GetComponent<EnemyLogic>().MonsterTurnStart();
                 yield return new WaitForSeconds(1f);
             }

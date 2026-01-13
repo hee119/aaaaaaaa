@@ -9,7 +9,7 @@ public class EnemyLogic : MonoBehaviour
     GameObject defenseIcon;
     private StatManager playerStats;
     private int attack;
-    public int defense;
+    private int defense;
     private int shareStats;
     private StatManager MonsterStats;
 
@@ -39,6 +39,8 @@ public class EnemyLogic : MonoBehaviour
 
     public IEnumerator MonsterTurnStart()
     {
+        attack = MonsterStats.attack;
+        defense = MonsterStats.defense;
         if (MonsterStats.isDead)
         {
             TurnManager.Instance.monsters.Remove(gameObject);
