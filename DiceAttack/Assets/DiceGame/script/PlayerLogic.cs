@@ -171,7 +171,12 @@ public class PlayerLogic : MonoBehaviour
                 Debug.Log("방어");
             }
         }
-        TurnImage.Instance.TurnUpdate();
+
+        if (!targetMonsterStats.isDead)
+        {
+            TurnImage.Instance.TurnUpdate();
+            TurnImage.Instance.Turn();
+        }
     }
 
     public IEnumerator Reroll(int diceCount)

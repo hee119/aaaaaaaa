@@ -92,12 +92,12 @@ public class StatManager : MonoBehaviour
     }
 
     void Die()
-    {
-        statPool.Release(this);
+    { 
         TurnManager.Instance.monsters.Remove(gameObject);
         TurnImage.Instance.turnImage.Remove(gameObject);
-        TurnImage.Instance.PlayerRemove(player);
-        TurnImage.Instance.TurnUpdate();
+        statPool.Release(this);
+        TurnImage.Instance.turnImage.Remove(player);
+        TurnImage.Instance.Turn();
         Debug.Log($"나주금{this}");
     }
 

@@ -39,7 +39,7 @@ public class TurnImage : MonoBehaviour
         Turn();
     }
 
-    void Turn()
+    public void Turn()
     {
        
             for (int i = 0; i < turnImageUI.Length; i++)
@@ -65,16 +65,6 @@ public class TurnImage : MonoBehaviour
         GameObject a = turnImage[0];
         turnImage.RemoveAt(0);
         turnImage.Add(a);
-        Turn();
-    }
-
-    public void PlayerRemove(GameObject player)
-    {
-        int lastIndex = turnImage.LastIndexOf(gameObject);
-        if (lastIndex >= 0)
-        {
-            turnImage.RemoveAt(lastIndex);
-        }
     }
 
 }
