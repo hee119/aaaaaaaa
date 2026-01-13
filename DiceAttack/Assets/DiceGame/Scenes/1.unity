@@ -1203,7 +1203,6 @@ MonoBehaviour:
   player: {fileID: 228424768}
   playerStat: {fileID: 228424767}
   playerTurnend: 0
-  turnImage: {fileID: 1032978620}
   winObj: {fileID: 868904029}
   loseObj: {fileID: 1886873447}
 --- !u!4 &359230500
@@ -2893,17 +2892,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
---- !u!114 &1032978620 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7607414663489344783, guid: 2cd5f7efde8a5a548b513718d2ca0da4, type: 3}
-  m_PrefabInstance: {fileID: 668139069}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1036281845
 GameObject:
   m_ObjectHideFlags: 0
@@ -4088,6 +4076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b527e3aa2e9dd4ef086b5dd240ccb4a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HpsliderPos
+  hpText: {fileID: 0}
 --- !u!1 &1559791291
 GameObject:
   m_ObjectHideFlags: 0

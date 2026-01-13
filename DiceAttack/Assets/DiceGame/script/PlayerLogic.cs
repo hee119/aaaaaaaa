@@ -165,6 +165,7 @@ public class PlayerLogic : MonoBehaviour
                 Debug.Log("방어");
             }
         }
+        TurnImage.Instance.TurnUpdate();
     }
 
     public IEnumerator Reroll(int diceCount)
@@ -233,7 +234,7 @@ public class PlayerLogic : MonoBehaviour
             DiceObj[diceCount].SetActive(true);
             yield return new WaitForSeconds(1f);
             DiceObj[diceCount].SetActive(false);
-        }
+    }
 
     void Critical()
     {

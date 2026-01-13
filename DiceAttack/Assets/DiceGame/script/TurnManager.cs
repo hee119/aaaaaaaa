@@ -11,7 +11,6 @@ public class TurnManager : MonoBehaviour
     public PlayerLogic player;
     public StatManager playerStat; 
     public bool playerTurnend;
-    public Queue<Image> turnImage;
     public GameObject winObj;
     public GameObject loseObj;
     private void Awake()

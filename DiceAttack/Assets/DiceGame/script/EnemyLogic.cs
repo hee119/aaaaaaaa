@@ -86,5 +86,6 @@ public class EnemyLogic : MonoBehaviour
             }
             
         }
+        TurnImage.Instance.TurnUpdate();
     }
 }
