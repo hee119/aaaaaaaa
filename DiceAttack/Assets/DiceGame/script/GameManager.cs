@@ -25,9 +25,13 @@ public class GameManager : MonoBehaviour
         Instance = this;
         // 씬 전환에도 파괴되지 않게 함
         DontDestroyOnLoad(gameObject);
+        Ak = 1;
+        Df = 1;
+        Hp = 100;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void Start()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (SceneManager.GetActiveScene().name != "Map")
         {
