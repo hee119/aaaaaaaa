@@ -90,11 +90,8 @@ public class EnemyLogic : MonoBehaviour
             }
             
         }
-
-        if (!MonsterStats.isDead)
-        {
+        
             TurnImage.Instance.TurnUpdate();
             TurnImage.Instance.Turn();
-        }
     }
 }

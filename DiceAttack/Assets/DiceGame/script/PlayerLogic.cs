@@ -28,7 +28,7 @@ public class PlayerLogic : MonoBehaviour
     public bool isReroll;
     private Image[] DiceImages = new Image[3];
     private int rand;
-    public EnemySpawn spawnCount;
+    private DynamicTextData critTextData;
     void Awake()
     {
         diceImage.enabled = false;
@@ -36,6 +36,7 @@ public class PlayerLogic : MonoBehaviour
         DiceImages[0] = dice[0].GetComponent<Image>();
         DiceImages[1] = dice[1].GetComponent<Image>();
         DiceImages[2] = dice[2].GetComponent<Image>();
+        critTextData = Resources.Load<DynamicTextData>("Crit Data 1");
     }
 
     void Start()
@@ -153,6 +154,12 @@ public class PlayerLogic : MonoBehaviour
                     DiceImages[i].sprite = DiceSprites[rand];
                     ATK.text = $"{attack}";
                 }
+                else if (dice[i].CompareTag("MadicDice"))
+                {
+                    yield return Reroll(i);
+                    DiceImages[i].sprite = DiceSprites[rand];
+                    ATK.text = $"{attack}";
+                }
             }
             rerollCount--;
             isReroll = false;
@@ -231,17 +238,27 @@ public class PlayerLogic : MonoBehaviour
             {
                 switch (rand)
                 {
-                    case 1: player.hp += 1 + firstAttack; break;
-                    case 2: player.hp += 2 + firstAttack; break;
-                    case 3: player.hp += 3 + firstAttack; break;
-                    case 4: player.hp += 4 + firstAttack; break;
-                    case 5: player.hp += 5 + firstAttack; break;
-                    case 6: player.hp += 6 + firstAttack; break;
+                    case 1: player.hp += 1; break;
+                    case 2: player.hp += 2; break;
+                    case 3: player.hp += 3; break;
+                    case 4: player.hp += 4; break;
+                    case 5: player.hp += 5; break;
+                    case 6: player.hp += 6; break;
                 }
             }
             DiceObj[diceCount].SetActive(true);
             yield return new WaitForSeconds(1f);
             DiceObj[diceCount].SetActive(false);
+            player.hp = Mathf.Clamp(player.hp, 0, player.maxHp);
+            if (dice[diceCount].CompareTag("MadicDice"))
+            {
+                DynamicTextManager.CreateText2D(
+                    transform.position + Vector3.up,
+                    $"{rand}",
+                    critTextData
+                );
+                if (player.HpSlider != null) player.HpSlider.HpBar(player.hp, player.maxHp);
+            }
     }
 
     void Critical()

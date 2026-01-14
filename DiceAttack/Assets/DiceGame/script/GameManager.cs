@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public bool[] winCount;
     public int nowScene;
     private StatManager player;
+    public bool isHeal;
     public int Hp{get; set;}
     public int Df{get; set;}
     public int Ak{get; set;}

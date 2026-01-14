@@ -17,9 +17,15 @@ public class StatManager : MonoBehaviour
 
     private IObjectPool<StatManager> statPool;
     private HpsliSlider hpSlider; // private으로 관리 (자식에서 찾음)
-
+    
     AudioSource audio;
     public DynamicTextData critTextData;
+
+    public HpsliSlider HpSlider
+    {
+        get => hpSlider;
+        set => hpSlider = value;
+    }
 
     void Awake()
     {
