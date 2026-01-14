@@ -267,7 +267,7 @@ public class PlayerLogic : MonoBehaviour
         double critical = 0;
         if (rand < 20)
         {
-            critical =Math.Round(attack + attack * 1.5f, 1);
+            critical =Math.Round(attack * 1.5f + 1, 1);
             attack = (int)critical;
         }
         
