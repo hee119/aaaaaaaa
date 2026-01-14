@@ -248,10 +248,10 @@ public class PlayerLogic : MonoBehaviour
 
     void Critical()
     {
-        rand = Random.Range(1, 101);
+        rand = Random.Range(1, 101); // 1 ~ 100
         int critical = 0;
         double b = 0;
-        if (rand <= attack * 3)
+        if (rand <= attack * 3) // 18 * 3 = 54. 1 - 18 = 36 / 10 = |-1.7| = , 
         {
             b = Mathf.Abs(rand - attack) / 10;
             b = Math.Round(b, 1);
