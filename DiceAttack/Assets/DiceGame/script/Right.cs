@@ -8,12 +8,16 @@ public class Right : MonoBehaviour
     public float slideAmount = 790f;
     public float minX = -1202f; // 왼쪽 한계
     public float maxX = 1202f;  // 🔒 오른쪽 한계
+    bool a = false;
 
     Vector2 startPos;
     Vector2 targetPos;
 
     public void Touch()
     {
+        if (a)
+            return;
+        a = true;
         startPos = target.anchoredPosition;
 
         float nextX = startPos.x - slideAmount;
@@ -40,5 +44,6 @@ public class Right : MonoBehaviour
         }
 
         target.anchoredPosition = targetPos;
+        a = false;
     }
 }

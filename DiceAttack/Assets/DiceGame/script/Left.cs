@@ -8,12 +8,15 @@ public class Left : MonoBehaviour
     public float slideAmount = 790f;
     public float minX = -1192f; // 왼쪽 한계
     public float maxX = 1202f;     // 오른쪽 한계
-
+    bool a = false;
     Vector2 startPos;
     Vector2 targetPos;
 
     public void Touch()
     {
+        if (a)
+            return;
+        a = true;
         startPos = target.anchoredPosition;
 
         float nextX = startPos.x + slideAmount;
@@ -23,6 +26,7 @@ public class Left : MonoBehaviour
 
         targetPos = new Vector2(nextX, startPos.y);
 
+        
         StartCoroutine(Move());
     }
 
@@ -38,7 +42,8 @@ public class Left : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-
+        
         target.anchoredPosition = targetPos;
+        a = false;
     }
 }
