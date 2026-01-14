@@ -16,8 +16,11 @@ public class StageManager : MonoBehaviour
     void Start()
     {
         UpdateMap();
-        player = GameObject.FindGameObjectWithTag("MapPlayer");
-        player.transform.position = stage[GameManager.Instance.nowScene].position;
+        if (SceneManager.GetActiveScene().name == "Map")
+        {
+            player = GameObject.FindGameObjectWithTag("MapPlayer");
+            player.transform.position = stage[GameManager.Instance.nowScene].position;
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
