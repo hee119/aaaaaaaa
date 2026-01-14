@@ -53,5 +53,7 @@ public class RandomStatGive : MonoBehaviour
             case StatType.Df:
                 GameManager.Instance.Df += stat;
                 break;
-        }    }
+        }
+
+    }
 }

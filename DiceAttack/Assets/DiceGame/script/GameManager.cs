@@ -32,11 +32,12 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "Map")
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<StatManager>();
+            playerStat();
         }
     }
     
 
-    void playerStat()
+    private void playerStat()
     {
         player.attack = Ak;
         player.defense = Df;

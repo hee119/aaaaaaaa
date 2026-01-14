@@ -802,7 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb0419ff026f41698df3873286f93e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatManager
-  maxHp: 200
+  maxHp: 10000
   hp: 0
   attack: 3
   isDead: 0

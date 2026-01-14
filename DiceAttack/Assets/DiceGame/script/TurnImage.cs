@@ -49,7 +49,10 @@ public class TurnImage : MonoBehaviour
             for (int i = 0; i < turnImageUI.Length; i++)
             {
                 if (i < turnImage.Count)
-                turnImageUI[i].sprite = turnImage[i].GetComponent<SpriteRenderer>().sprite;
+                {
+                    turnImageUI[i].sprite = turnImage[i].GetComponent<SpriteRenderer>().sprite;
+                    turnImageUI[i].color = turnImage[i].GetComponent<SpriteRenderer>().color;
+                }
                 else if (1 == enemySpawn.spawnCount || !turnManager.playerTurnend && 1 == TurnManager.Instance.monsters.Count)
                 {
                     if (!isOne)
@@ -57,8 +60,9 @@ public class TurnImage : MonoBehaviour
                         isOne = true;
                         turnImage.Add(playerImage);
                         turnImage.Add(TurnManager.Instance.monsters[0]);
+                        turnImageUI[i].sprite = turnImage[i].GetComponent<SpriteRenderer>().sprite;
+                        turnImageUI[i].color = turnImage[i].GetComponent<SpriteRenderer>().color;
                     }
-                    turnImageUI[i].sprite = turnImage[i].GetComponent<SpriteRenderer>().sprite;
                 }
                 else if (1 == TurnManager.Instance.monsters.Count && turnManager.playerTurnend)
                 {
@@ -67,8 +71,9 @@ public class TurnImage : MonoBehaviour
                         isOne = true;
                         turnImage.Add(TurnManager.Instance.monsters[0]);
                         turnImage.Add(playerImage);
+                        turnImageUI[i].sprite = turnImage[i].GetComponent<SpriteRenderer>().sprite;
+                        turnImageUI[i].color = turnImage[i].GetComponent<SpriteRenderer>().color;
                     }
-                    turnImageUI[i].sprite = turnImage[i].GetComponent<SpriteRenderer>().sprite;
                 }
             }
 
