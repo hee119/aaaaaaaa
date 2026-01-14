@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public int Ak{get; set;}
     private void Awake()
     {
+        nowScene = 1;
         // 이미 인스턴스가 존재하면 자기 자신 제거
         if (Instance != null && Instance != this)
         {
