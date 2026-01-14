@@ -264,11 +264,14 @@ public class PlayerLogic : MonoBehaviour
     void Critical()
     {
         rand = Random.Range(1, 101); // 1 ~ 100
-        double critical = 0;
-        if (rand < 20)
+        int critical = 0;
+        double b = 0;
+        if (rand <= attack * 3) // 18 * 3 = 54. 1 - 18 = 36 / 10 = |-1.7| = , 
         {
-            critical =Math.Round(attack * 1.5f + 1, 1);
-            attack = (int)critical;
+            b = Mathf.Abs(rand - attack) / 10;
+            b = Math.Round(b, 1);
+            critical = (int)(attack + b * attack);
+            attack = critical;
         }
         
         CTC.text = critical.ToString();

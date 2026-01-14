@@ -669,6 +669,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
+      propertyPath: m_Transition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1468,13 +1472,14 @@ MonoBehaviour:
   - {fileID: 1551157192}
   - {fileID: 1636616730}
   connections:
-  - reachableStages: 0000000001000000
+  - reachableStages: 01000000
   - reachableStages: 020000000300000000000000
-  - reachableStages: 03000000040000000500000000000000
-  - reachableStages: 0000000001000000020000000400000005000000
-  - reachableStages: 030000000500000000000000
-  - reachableStages: 0600000000000000
+  - reachableStages: 03000000040000000500000001000000
+  - reachableStages: 010000000200000005000000
+  - reachableStages: 030000000500000006000000
+  - reachableStages: 0300000005000000
   - reachableStages: 
+  eventStageIndexes: 0300000005000000
 --- !u!1 &704796922
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,6 +1866,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
+      propertyPath: m_Transition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2224,6 +2233,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
+      propertyPath: m_Transition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2367,6 +2380,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 845930240796962770, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
+      propertyPath: m_Transition
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
@@ -2604,6 +2621,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 845930240796962770, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
+      propertyPath: m_Transition
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
@@ -2926,6 +2947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   winCount: 00000000000000
   nowScene: 0
+  isHeal: 0
 --- !u!4 &1716927945
 Transform:
   m_ObjectHideFlags: 0
@@ -3801,6 +3823,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
+      propertyPath: m_Transition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -4110,6 +4136,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 845930240796962770, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
+      propertyPath: m_Transition
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}

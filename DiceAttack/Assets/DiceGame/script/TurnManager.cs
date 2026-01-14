@@ -73,7 +73,6 @@ public class TurnManager : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 0;
             Debug.Log("you Lose");
             loseObj.SetActive(true);
         }
