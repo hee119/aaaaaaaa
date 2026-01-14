@@ -111,7 +111,6 @@ public class StatManager : MonoBehaviour
     {
         isDead = false;
         hp = maxHp; // 100 대신 설정된 maxHp로 초기화
-        gameObject.transform.GetChild(2).gameObject.SetActive(true);
         // [핵심] 오브젝트 풀에서 다시 나올 때 슬라이더 상태 복구
         if (hpSlider != null)
         {
