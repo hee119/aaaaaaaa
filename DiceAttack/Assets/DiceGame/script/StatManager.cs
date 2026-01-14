@@ -10,6 +10,7 @@ public class StatManager : MonoBehaviour
     public int attack;
     public bool isDead;
     public int defense;
+    private int defensea;
     public Animator animator;
     private GameObject blood;
     [CanBeNull] private GameObject defenseIcon;
@@ -41,11 +42,12 @@ public class StatManager : MonoBehaviour
         audio = GetComponent<AudioSource>();
         hp = maxHp;
         if (hpSlider != null) hpSlider.HpBar(hp, maxHp);
+        defensea = defense;
     }
 
     public IEnumerator Hit(int attack)
     {
-        if (defense < attack)
+        if (defensea < attack)
         {
             DynamicTextManager.CreateText2D(
                 transform.position + Vector3.up,
@@ -54,7 +56,7 @@ public class StatManager : MonoBehaviour
             );
             audio.Play();
             blood.SetActive(true);
-            hp -= Mathf.Abs(attack - defense);
+            hp -= Mathf.Abs(attack - defensea);
             hp = Mathf.Clamp(hp, 0, maxHp);
             if (hpSlider != null) hpSlider.HpBar(hp, maxHp);
 
@@ -64,6 +66,7 @@ public class StatManager : MonoBehaviour
                 defenseIcon.SetActive(false);
             
             blood.SetActive(false);
+            defensea = defense;
         }
         else
         {
@@ -75,6 +78,7 @@ public class StatManager : MonoBehaviour
             Debug.Log("완전방어에 성공했습니다.");
             if (defenseIcon != null)
                 defenseIcon.SetActive(false);
+            defensea = defense;
         }
 
         if (hp <= 0 && !isDead)
@@ -95,7 +99,7 @@ public class StatManager : MonoBehaviour
 
     public void Defense(int defense)
     {
-        this.defense += defense;
+        defensea += defense;
         Debug.Log("방어중입니다.");
     }
 
