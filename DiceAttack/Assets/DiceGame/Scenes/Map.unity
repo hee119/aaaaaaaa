@@ -1090,6 +1090,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   player: {fileID: 1737018581}
   Attack: {fileID: 1930520563}
+--- !u!114 &540265504 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
+  m_PrefabInstance: {fileID: 1494613875}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540265499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &563309369 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5276810048428246846, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
@@ -1381,6 +1392,22 @@ MonoBehaviour:
   - {fileID: 1614647123}
   - {fileID: 1551157187}
   - {fileID: 1636616725}
+  stageButtons:
+  - {fileID: 509448236739910902}
+  - {fileID: 1327657580}
+  - {fileID: 540265504}
+  - {fileID: 867513433}
+  - {fileID: 1614647128}
+  - {fileID: 1551157192}
+  - {fileID: 1636616730}
+  connections:
+  - reachableStages: 0000000001000000
+  - reachableStages: 020000000300000000000000
+  - reachableStages: 03000000040000000500000000000000
+  - reachableStages: 0400000000000000
+  - reachableStages: 030000000500000000000000
+  - reachableStages: 0600000000000000
+  - reachableStages: 
 --- !u!1 &704796922
 GameObject:
   m_ObjectHideFlags: 0
@@ -1496,6 +1523,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   player: {fileID: 1737018581}
   Attack: {fileID: 1930520563}
+--- !u!114 &867513433 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
+  m_PrefabInstance: {fileID: 344719684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837922918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &878549413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2009,6 +2047,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   player: {fileID: 1737018581}
   Attack: {fileID: 1930520563}
+--- !u!114 &1327657580 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
+  m_PrefabInstance: {fileID: 2062155526}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210814683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1385724266 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5276810048428246846, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
@@ -2330,6 +2379,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   player: {fileID: 1737018581}
   Attack: {fileID: 1930520563}
+--- !u!114 &1551157192 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
+  m_PrefabInstance: {fileID: 1551157186}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563309369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &1552464765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2556,6 +2616,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   player: {fileID: 1737018581}
   Attack: {fileID: 1930520563}
+--- !u!114 &1614647128 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
+  m_PrefabInstance: {fileID: 1614647122}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385724266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1619103324
 GameObject:
   m_ObjectHideFlags: 0
@@ -2666,6 +2737,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   player: {fileID: 1737018581}
   Attack: {fileID: 1930520563}
+--- !u!114 &1636616730 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
+  m_PrefabInstance: {fileID: 942031134}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390737591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1671517692
 GameObject:
   m_ObjectHideFlags: 0
@@ -4032,6 +4114,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   player: {fileID: 1737018581}
   Attack: {fileID: 1930520563}
+--- !u!114 &509448236739910902 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4200442132693926732, guid: 64c9a950da655a244b868fc681ca5170, type: 3}
+  m_PrefabInstance: {fileID: 509448236739910899}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509448236739910900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
