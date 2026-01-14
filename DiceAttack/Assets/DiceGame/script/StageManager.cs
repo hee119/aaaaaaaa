@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI; // ¹öÆ° Á¦¾î¸¦ À§ÇØ Ãß°¡
+using UnityEngine.UI; // ï¿½ï¿½Æ° ï¿½ï¿½ï¿½î¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
@@ -8,15 +8,15 @@ public class StageManager : MonoBehaviour
     public GameObject player;
     public Transform[] stage;
 
-    // --- Ãß°¡µÈ ºÎºÐ ---
-    public Button[] stageButtons; // ÀÎ½ºÆåÅÍ¿¡¼­ °¢ ½ºÅ×ÀÌÁö ¹öÆ°µéÀ» ÇÒ´çÇÏ¼¼¿ä.
+    // --- ï¿½ß°ï¿½ï¿½ï¿½ ï¿½Îºï¿½ ---
+    public Button[] stageButtons; // ï¿½Î½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½.
 
     [System.Serializable]
     public struct StageConnection
     {
-        public int[] reachableStages; // °¢ ½ºÅ×ÀÌÁö¿¡¼­ °¥ ¼ö ÀÖ´Â ´ÙÀ½ ½ºÅ×ÀÌÁö ¹øÈ£µé
+        public int[] reachableStages; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½
     }
-    public StageConnection[] connections; // °¢ ½ºÅ×ÀÌÁöº° ¿¬°á Á¤º¸
+    public StageConnection[] connections; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     // ------------------
 
     private void Awake()
@@ -26,9 +26,12 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
-        UpdateMap();
-        player = GameObject.FindGameObjectWithTag("MapPlayer");
-        player.transform.position = stage[GameManager.Instance.nowScene].position;
+        if (SceneManager.GetActiveScene().name == "Map")
+        {
+            UpdateMap();
+            player = GameObject.FindGameObjectWithTag("MapPlayer");
+            player.transform.position = stage[GameManager.Instance.nowScene].position;
+        }
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -47,34 +50,34 @@ public class StageManager : MonoBehaviour
             bool isCurrent = (i == currentPos);
             bool isReachable = false;
 
-            // ÇöÀç À§Ä¡¿¡¼­ °¥ ¼ö ÀÖ´Â °÷ÀÎÁö È®ÀÎ
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
             foreach (int reachableId in connections[currentPos].reachableStages)
             {
                 if (i == reachableId) { isReachable = true; break; }
             }
 
-            // --- ¿©±â¼­ºÎÅÍ ÇÙ½É ·ÎÁ÷ ---
+            // --- ï¿½ï¿½ï¿½â¼­ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ ---
 
             if (isCleared || isCurrent)
             {
-                // 1. ÀÌ¹Ì ²£°Å³ª ÇöÀç ÀÖ´Â Ä­: "ÇÏ¾é°Ô º¸ÀÌµÇ Å¬¸¯Àº ¾È µÊ"
-                stageButtons[i].interactable = true;         // ÇÏ¾á»ö À¯Áö (Normal Color)
-                stageButtons[i].image.raycastTarget = false; // ¸¶¿ì½º Å¬¸¯ ¹«½Ã
+                // 1. ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Ä­: "ï¿½Ï¾ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½"
+                stageButtons[i].interactable = true;         // ï¿½Ï¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (Normal Color)
+                stageButtons[i].image.raycastTarget = false; // ï¿½ï¿½ï¿½ì½º Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
                 if (isCleared) clearImage[i].SetActive(true);
             }
             else if (isReachable)
             {
-                // 2. °¥ ¼ö ÀÖ´Â ´ÙÀ½ Ä­: "ÇÏ¾é°í Å¬¸¯µµ µÊ"
-                stageButtons[i].interactable = true;         // ÇÏ¾á»ö
-                stageButtons[i].image.raycastTarget = true;  // Å¬¸¯ °¡´É
+                // 2. ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä­: "ï¿½Ï¾ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½"
+                stageButtons[i].interactable = true;         // ï¿½Ï¾ï¿½ï¿½
+                stageButtons[i].image.raycastTarget = true;  // Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 clearImage[i].SetActive(false);
             }
             else
             {
-                // 3. ¾ÆÁ÷ ¸ø °¡´Â ¸Õ Ä­: "È¸»öÀÌ°í Å¬¸¯µµ ¾È µÊ"
-                stageButtons[i].interactable = false;        // È¸»ö Ã³¸® (Disabled Color)
-                stageButtons[i].image.raycastTarget = false; // Å¬¸¯ ºÒ°¡
+                // 3. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ä­: "È¸ï¿½ï¿½ï¿½Ì°ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½"
+                stageButtons[i].interactable = false;        // È¸ï¿½ï¿½ Ã³ï¿½ï¿½ (Disabled Color)
+                stageButtons[i].image.raycastTarget = false; // Å¬ï¿½ï¿½ ï¿½Ò°ï¿½
                 clearImage[i].SetActive(false);
             }
         }

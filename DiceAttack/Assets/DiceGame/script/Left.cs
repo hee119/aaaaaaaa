@@ -3,25 +3,42 @@ using UnityEngine;
 
 public class Left : MonoBehaviour
 {
-    public GameObject target;
-    Vector3 targetCurrentPos = Vector3.zero;
-    Vector3 targetPos = Vector3.zero;
+    public RectTransform target;
+
+    public float slideAmount = 790f;
+    public float minX = -1192f; // 왼쪽 한계
+    public float maxX = 1202f;     // 오른쪽 한계
+
+    Vector2 startPos;
+    Vector2 targetPos;
 
     public void Touch()
     {
-        targetCurrentPos = target.transform.position;
-        targetPos = new Vector3(targetCurrentPos.x - 790, target.transform.position.y, target.transform.position.z);
-        StartCoroutine(RightIE());
+        startPos = target.anchoredPosition;
+
+        float nextX = startPos.x + slideAmount;
+
+        // 🔒 여기서 제한
+        nextX = Mathf.Clamp(nextX, minX, maxX);
+
+        targetPos = new Vector2(nextX, startPos.y);
+
+        StartCoroutine(Move());
     }
 
-    IEnumerator RightIE()
+    IEnumerator Move()
     {
-        float timer = 0;
-        while (timer < 2)
+        float timer = 0f;
+        float duration = 0.3f;
+
+        while (timer < duration)
         {
-            target.transform.position = Vector3.Lerp(targetCurrentPos, targetPos, timer);
+            float t = timer / duration;
+            target.anchoredPosition = Vector2.Lerp(startPos, targetPos, t);
             timer += Time.deltaTime;
             yield return null;
         }
+
+        target.anchoredPosition = targetPos;
     }
 }

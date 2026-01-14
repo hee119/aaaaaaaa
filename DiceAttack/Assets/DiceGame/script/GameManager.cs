@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (SceneManager.GetActiveScene().name != "Map")
+        if (SceneManager.GetActiveScene().name != "Map" && SceneManager.GetActiveScene().name != "Tutorial")
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<StatManager>();
             playerStat();

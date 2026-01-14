@@ -10,4 +10,9 @@ public class a : MonoBehaviour
         SceneManager.LoadScene("Map");
 
     }
+
+    public void OpenStage1()
+    {
+        SceneManager.LoadScene("1");
+    }
 }
