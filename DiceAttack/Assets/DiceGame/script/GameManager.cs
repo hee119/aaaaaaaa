@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     public bool[] winCount;
     public int nowScene;
     private StatManager player;
-    
     public int Hp{get; set;}
     public int Df{get; set;}
     public int Ak{get; set;}
@@ -30,16 +29,12 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
         if (SceneManager.GetActiveScene().name != "Map")
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<StatManager>();
         }
     }
+    
 
     void playerStat()
     {
