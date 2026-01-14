@@ -29,9 +29,14 @@ public class TurnManager : MonoBehaviour
 
     void Start()
     {
+        Invoke("StartTurn", 2f);
+    }
+
+
+    void StartTurn()
+    {
         StartCoroutine(TurnRoutine());
     }
-    
     IEnumerator TurnRoutine()
     {
         while (true)
@@ -41,8 +46,9 @@ public class TurnManager : MonoBehaviour
             if(monsters.Count < 1)
                 break;
             Debug.Log(monsters.Count);
+            yield return new WaitForSeconds(1f);
             yield return player.PlayerTurnStart();
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(3f);
             for (int i = 0; i < monsters.Count; i++)
             {
                 if(monsters[i] == null || !monsters[i].activeSelf || monsters[i].GetComponent<StatManager>().isDead)
