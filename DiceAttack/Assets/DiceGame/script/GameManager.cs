@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (SceneManager.GetActiveScene().name != "Map" && SceneManager.GetActiveScene().name != "Tutorial")
+        if (SceneManager.GetActiveScene().name != "Map" && SceneManager.GetActiveScene().name != "Tutorial" && SceneManager.GetActiveScene().name != "3" && SceneManager.GetActiveScene().name != "5")
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<StatManager>();
             playerStat();
