@@ -81,8 +81,6 @@ public class PlayerLogic : MonoBehaviour
     {
         defence = 0;
         attack = 0;
-        player.attack = 0;
-        player.defense = 0;
         UpdateUi();
         Debug.Log($"player {defence}");
         
