@@ -49,6 +49,7 @@ public class StatManager : MonoBehaviour
             audio.Play();
             blood.SetActive(true);
             hp -= Mathf.Abs(attack - defense);
+            hp = Mathf.Clamp(hp, 0, maxHp);
             if (hpSlider != null) hpSlider.HpBar(hp, maxHp);
 
             yield return new WaitForSeconds(0.7f);
@@ -60,6 +61,11 @@ public class StatManager : MonoBehaviour
         }
         else
         {
+            DynamicTextManager.CreateText2D(
+                transform.position + Vector3.up,
+                "DEFENSE",
+                critTextData
+            );
             Debug.Log("완전방어에 성공했습니다.");
             if (defenseIcon != null)
                 defenseIcon.SetActive(false);

@@ -11,6 +11,8 @@ public class TurnImage : MonoBehaviour
     public GameObject playerImage;
     public Image[] turnImageUI = new Image[3];
     private bool isOne;
+    private EnemySpawn enemySpawn;
+    private TurnManager turnManager;
     private void Awake()
     {
         // 이미 인스턴스가 존재하면 자기 자신 제거
@@ -36,6 +38,8 @@ public class TurnImage : MonoBehaviour
             turnImage.Add(TurnManager.Instance.monsters[i]);
         }
         isOne = false;
+        enemySpawn = GameObject.FindGameObjectWithTag("Spawner").GetComponent<EnemySpawn>();
+        turnManager = GameObject.FindGameObjectWithTag("TurnManager").GetComponent<TurnManager>();
         Turn();
     }
 
@@ -46,13 +50,23 @@ public class TurnImage : MonoBehaviour
             {
                 if (i < turnImage.Count)
                 turnImageUI[i].sprite = turnImage[i].GetComponent<SpriteRenderer>().sprite;
-                else if (1 == TurnManager.Instance.monsters.Count)
+                else if (1 == enemySpawn.spawnCount || !turnManager.playerTurnend && 1 == TurnManager.Instance.monsters.Count)
                 {
                     if (!isOne)
                     {
                         isOne = true;
                         turnImage.Add(playerImage);
                         turnImage.Add(TurnManager.Instance.monsters[0]);
+                    }
+                    turnImageUI[i].sprite = turnImage[i].GetComponent<SpriteRenderer>().sprite;
+                }
+                else if (1 == TurnManager.Instance.monsters.Count && turnManager.playerTurnend)
+                {
+                    if (!isOne)
+                    {
+                        isOne = true;
+                        turnImage.Add(TurnManager.Instance.monsters[0]);
+                        turnImage.Add(playerImage);
                     }
                     turnImageUI[i].sprite = turnImage[i].GetComponent<SpriteRenderer>().sprite;
                 }

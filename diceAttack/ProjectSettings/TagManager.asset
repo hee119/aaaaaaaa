@@ -10,6 +10,8 @@ TagManager:
   - GambleDice
   - MadicDice
   - MapPlayer
+  - Spawner
+  - TurnManager
   layers:
   - Default
   - TransparentFX

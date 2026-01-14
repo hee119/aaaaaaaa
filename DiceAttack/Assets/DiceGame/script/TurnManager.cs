@@ -48,6 +48,12 @@ public class TurnManager : MonoBehaviour
             Debug.Log(monsters.Count);
             yield return new WaitForSeconds(1f);
             yield return player.PlayerTurnStart();
+            for (int i = 0; i < monsters.Count; i++)
+            {
+                if(monsters[i] == null || !monsters[i].activeSelf || monsters[i].GetComponent<StatManager>().isDead)
+                    continue;
+                monsters[i].transform.GetChild(4).gameObject.SetActive(false);
+            }
             yield return new WaitForSeconds(3f);
             for (int i = 0; i < monsters.Count; i++)
             {
